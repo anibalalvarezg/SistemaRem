@@ -16,6 +16,8 @@ public class RemGui extends javax.swing.JFrame {
      */
     public RemGui() {
         initComponents();
+        setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
+
     }
 
     /**
@@ -81,7 +83,10 @@ public class RemGui extends javax.swing.JFrame {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
+        RemIFMAgregar agregarP = new RemIFMAgregar();
         
+       this.jDesktopPane1.add(agregarP);
+       agregarP.show();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
