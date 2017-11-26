@@ -120,7 +120,7 @@ public class RemIFMAgregarAfp extends javax.swing.JInternalFrame {
         Afp nuevaAfp = new Afp(nombre,descuento);
         AfpDAO daoAfp = new AfpDAO();
         daoAfp.registrarAfp(nuevaAfp);
-
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

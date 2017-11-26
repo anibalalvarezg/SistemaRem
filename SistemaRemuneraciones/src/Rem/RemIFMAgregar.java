@@ -7,8 +7,13 @@ package Rem;
 
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+
 import DAO.PersonaDAO;
+import DAO.AfpDAO;
+
 import VO.Persona;
+import VO.Afp;
+
 
 /**
  *
@@ -287,6 +292,10 @@ public class RemIFMAgregar extends javax.swing.JInternalFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        /*AfpDAO afpDao = new AfpDAO();
+        
+        ArrayList<Afp> listaAfp = afpDao.listaDeAfp();
+        */
         
         int rut = Integer.valueOf(fieldRut.getText());
         int dv  = Integer.valueOf(fieldDV.getText());
@@ -307,8 +316,6 @@ public class RemIFMAgregar extends javax.swing.JInternalFrame {
         
         PersonaDAO daoPersona = new PersonaDAO();
         daoPersona.registrarPersona(nuevaPersona);
-        
-        
         
 
     }//GEN-LAST:event_jButton2ActionPerformed

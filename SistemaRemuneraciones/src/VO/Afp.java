@@ -18,6 +18,12 @@ public class Afp {
         this.nombre = nombre;
         this.descuento = descuento;
     }
+    
+    public Afp(int codAfp,String nombre, int descuento) {
+        this.nombre = nombre;
+        this.descuento = descuento;
+        this.codigoAfp = codAfp;
+    }
 
     public int getCodigoAfp() {
         return codigoAfp;

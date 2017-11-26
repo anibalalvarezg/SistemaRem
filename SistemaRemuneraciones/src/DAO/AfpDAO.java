@@ -7,8 +7,11 @@ package DAO;
 
 import ConexionBd.ConexionBd;
 import VO.Afp;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -31,5 +34,32 @@ public class AfpDAO {
             JOptionPane.showMessageDialog(null, "No se registró la Afp");
         }
      }
+    
+    
+    public ArrayList<Afp> listaDeAfp() {
+        ArrayList<Afp> listaAfp = new ArrayList<Afp>();
+        ConexionBd conex= new ConexionBd();
+
+        try {
+            PreparedStatement consulta = conex.getConnection().prepareStatement("SELECT * FROM REM_Afp");
+            ResultSet res = consulta.executeQuery();
+            while(res.next()){
+                int codAfp = Integer.parseInt(res.getString("codigoAfp"));
+                String nombre = res.getString("nombre");
+                int descuento = Integer.parseInt(res.getString("descuento"));
+                Afp afpAux = new Afp(codAfp,nombre,descuento);
+                listaAfp.add(afpAux);
+            }
+                   res.close();
+                   consulta.close();
+                   conex.desconectar();
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "no se pudo realizar la consulta\n"+e);
+        }
+            return listaAfp;
+    }
 
 }
+
+
