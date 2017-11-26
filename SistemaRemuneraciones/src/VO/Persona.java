@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Rem;
+package VO;
 
 /**
  *
@@ -21,8 +21,9 @@ public class Persona {
     private int sueldoBase;
     private int bonoColacion;
     private int bonoMovilizacion;
+    private int idAfp;
 
-    public Persona(String nombre, String apellidoPat, String apellidoMat, String direccion, String fechaNacimiento, int rut, int dv, int idCiudad, int sueldoBase, int bonoColacion, int bonoMovilizacion) {
+    public Persona(String nombre, String apellidoPat, String apellidoMat, String direccion, String fechaNacimiento, int rut, int dv, int idCiudad, int sueldoBase, int bonoColacion, int bonoMovilizacion, int idAfp) {
         this.nombre = nombre;
         this.apellidoPat = apellidoPat;
         this.apellidoMat = apellidoMat;
@@ -34,8 +35,18 @@ public class Persona {
         this.sueldoBase = sueldoBase;
         this.bonoColacion = bonoColacion;
         this.bonoMovilizacion = bonoMovilizacion;
+        this.idAfp = idAfp;
     }
 
+    public int getIdAfp() {
+        return idAfp;
+    }
+
+    public void setIdAfp(int idAfp) {
+        this.idAfp = idAfp;
+    }
+
+    
     public int getRut() {
         return rut;
     }
@@ -52,8 +63,6 @@ public class Persona {
         this.dv = dv;
     }
 
-    
-    
     public String getNombre() {
         return nombre;
     }
