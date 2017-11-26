@@ -14,8 +14,7 @@ public class Afp {
     private String nombre; 
     private int descuento;
 
-    public Afp(int codigoAfp, String nombre, int descuento) {
-        this.codigoAfp = codigoAfp;
+    public Afp(String nombre, int descuento) {
         this.nombre = nombre;
         this.descuento = descuento;
     }

@@ -138,10 +138,9 @@ public class RemGui extends javax.swing.JFrame {
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         // TODO add your handling code here:
-       RemIFMAfp agregarA = new RemIFMAfp();
-        
-       this.jDesktopPane1.add(agregarA);
-       agregarA.show();
+        RemIFMAgregarAfp agregarA = new RemIFMAgregarAfp();
+        this.jDesktopPane1.add(agregarA);
+        agregarA.show();
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     /**

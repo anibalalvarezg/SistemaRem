@@ -32,7 +32,7 @@ public class PersonaDAO {
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-            JOptionPane.showMessageDialog(null, "No se Registro la persona");
+            JOptionPane.showMessageDialog(null, "No se registró la persona");
         }
      }
 }

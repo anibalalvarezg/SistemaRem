@@ -20,15 +20,15 @@ public class AfpDAO {
         ConexionBd conex= new ConexionBd();
         try {
             Statement estatuto = conex.getConnection().createStatement();
-            estatuto.executeUpdate("INSERT INTO rem_personal (`id`, `nombre`, `descuento`) VALUES ("
-                    +afp.getCodigoAfp()+","+afp.getNombre()+",'"+afp.getDescuento()+")");
+            estatuto.executeUpdate("INSERT INTO REM_Afp (`nombre`, `descuento`) VALUES ('"
+                   +afp.getNombre()+"',"+afp.getDescuento()+")");
             JOptionPane.showMessageDialog(null, "Se ha registrado Exitosamente","Información",JOptionPane.INFORMATION_MESSAGE);
             estatuto.close();
             conex.desconectar();
 
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-            JOptionPane.showMessageDialog(null, "No se Registro la Afp");
+            JOptionPane.showMessageDialog(null, "No se registró la Afp");
         }
      }
 
