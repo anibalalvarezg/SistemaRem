@@ -12,10 +12,10 @@ import java.sql.*;
  * @author z40L
  */
 public class ConexionBd {
-    static String bd = "sistemaremuneraciones";
-    static String login = "root";
-    static String password = "";
-    static String url = "jdbc:mysql://localhost/"+bd;
+    static String bd = "erpremuneraciones";
+    static String login = "erpremuneraciones";
+    static String password = "GpPG4*jG";
+    static String url = "jdbc:mysql://beta.inf.ucv.cl:3306/"+bd;
    
     Connection connection = null;
    

@@ -22,9 +22,10 @@ public class PersonaDAO {
         ConexionBd conex= new ConexionBd();
         try {
             Statement estatuto = conex.getConnection().createStatement();
-            estatuto.executeUpdate("INSERT INTO rem_personal (`rut`, `dv`, `nombre`, `apellidoP`, `apellidoM`, `direccion`, `fechaNacimiento`, `sueldoBase`, `bonoColacion`, `bonoMovilizacion`,`codigoAfp`, `idCiudad`) VALUES ("
+            estatuto.executeUpdate("INSERT INTO REM_Personal (`rut`, `dv`, `nombre`, `apellidoP`, `apellidoM`, `direccion`, `fechaNacimiento`, `sueldoBase`, `bonoColacion`, `bonoMovilizacion`,`codigoAfp`, `idCiudad`) VALUES ("
                     +persona.getRut()+","+persona.getDv()+",'"+persona.getNombre()+"','"+persona.getApellidoPat()+"','"+persona.getApellidoMat()+"','"+persona.getDireccion()+"','"+persona.getFechaNacimiento()+"',"+persona.getSueldoBase()+","
                     +persona.getBonoColacion()+","+persona.getBonoMovilizacion()+","+persona.getIdAfp()+","+persona.getIdCiudad()+")");
+
             JOptionPane.showMessageDialog(null, "Se ha registrado Exitosamente","Información",JOptionPane.INFORMATION_MESSAGE);
             estatuto.close();
             conex.desconectar();
