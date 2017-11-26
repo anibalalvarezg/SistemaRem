@@ -34,5 +34,27 @@ public class PersonaDAO {
             System.out.println(e.getMessage());
             JOptionPane.showMessageDialog(null, "No se registró la persona");
         }
-     }
+    }
+    public ArrayList<Persona> getListaPersonas(){
+        ConexionBd conex= new ConexionBd();
+        ArrayList<Persona> listaPersonas = new ArrayList<Persona>();
+        try {
+            Statement estatuto = conex.getConnection().createStatement();
+            ResultSet rs;
+            Persona persona;
+            rs = estatuto.executeQuery("SELECT * FROM REM_Personal ");
+            while(rs.next()){
+                persona = new Persona(rs.getString("nombre"),rs.getString("apellidoP"),rs.getString("apellidoM"),rs.getString("direccion"),rs.getString("fechaNacimiento"),rs.getInt("rut"),rs.getInt("dv"),rs.getInt("idCiudad"),rs.getInt("sueldoBase"),rs.getInt("bonoColacion"),rs.getInt("bonoMovilizacion"),rs.getInt("codigoAfp"));
+                listaPersonas.add(persona);
+            }
+            estatuto.close();
+            conex.desconectar();
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null, "No se encontraron personas");
+        }
+        return listaPersonas;
+    }
+
 }
