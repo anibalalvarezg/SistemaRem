@@ -82,6 +82,8 @@ public class RemIFMEditar extends javax.swing.JInternalFrame {
         jTableMostrar = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
 
+        setClosable(true);
+
         jLabel1.setText("Nombre");
 
         jLabel2.setText("Apellido Materno");

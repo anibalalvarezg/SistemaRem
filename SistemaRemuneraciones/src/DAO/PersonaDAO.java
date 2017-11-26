@@ -43,7 +43,7 @@ public class PersonaDAO {
             Statement estatuto = conex.getConnection().createStatement();
             ResultSet rs;
             Persona persona;
-            rs = estatuto.executeQuery("SELECT * FROM REM_Personal ");
+            rs = estatuto.executeQuery("SELECT * FROM REM_Personal WHERE activo = 1 ");
             while(rs.next()){
                 persona = new Persona(rs.getString("nombre"),rs.getString("apellidoP"),rs.getString("apellidoM"),rs.getString("direccion"),rs.getString("fechaNacimiento"),rs.getInt("rut"),rs.getInt("dv"),rs.getInt("idCiudad"),rs.getInt("sueldoBase"),rs.getInt("bonoColacion"),rs.getInt("bonoMovilizacion"),rs.getInt("codigoAfp"));
                 listaPersonas.add(persona);
@@ -57,5 +57,50 @@ public class PersonaDAO {
         }
         return listaPersonas;
     }
+    
+    public Persona buscarPersona(int rut, int dv){
+        ConexionBd conex= new ConexionBd();
+        try {
+            Statement st = conex.getConnection().createStatement();
+            ResultSet rs;
+            Persona persona;
+            rs = st.executeQuery("SELECT * FROM REM_Personal WHERE rut="+rut+" AND dv="+dv+" AND activo = 1");
+            if (!rs.next() ) {
+                persona = null;
+                JOptionPane.showMessageDialog(null, "No se encontró la persona.");
 
+            } else {
+                persona = new Persona(rs.getString("nombre"),rs.getString("apellidoP"),rs.getString("apellidoM"),rs.getString("direccion"),rs.getString("fechaNacimiento"),rs.getInt("rut"),rs.getInt("dv"),rs.getInt("idCiudad"),rs.getInt("sueldoBase"),rs.getInt("bonoColacion"),rs.getInt("bonoMovilizacion"),rs.getInt("codigoAfp"));
+            }
+            st.close();
+            conex.desconectar();
+            return persona;
+
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null, "No se encontraron personas");
+            return null;
+        }
+    }
+    
+    public void darDeBajaPersona(int rut,int dv) {
+        ConexionBd conex= new ConexionBd();
+        try {
+            Statement st = conex.getConnection().createStatement();
+            ResultSet rs;
+            Persona persona;
+            st.executeUpdate("UPDATE REM_Personal SET activo = 0 WHERE rut="+rut+" AND dv="+dv);
+            st.close();
+            conex.desconectar();
+            JOptionPane.showMessageDialog(null, "Se dió de baja correctamente.");
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null, "No se encontraron personas");
+        }
+    
+    }
+    
+ 
 }

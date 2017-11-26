@@ -144,7 +144,12 @@ public class RemIFMAgregar extends javax.swing.JInternalFrame {
 
         jLabel14.setText("Afp");
 
-        comboAfp.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboAfp.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Habitad", "Cuprum" }));
+        comboAfp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboAfpActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -170,11 +175,10 @@ public class RemIFMAgregar extends javax.swing.JInternalFrame {
                                             .addGroup(layout.createSequentialGroup()
                                                 .addGap(14, 14, 14)
                                                 .addComponent(jButton2))
-                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                .addComponent(comboAfp, javax.swing.GroupLayout.Alignment.LEADING, 0, 137, Short.MAX_VALUE)
-                                                .addComponent(fieldMovilizacion, javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(fieldColacion, javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(fieldSueldoBase, javax.swing.GroupLayout.Alignment.LEADING)))
+                                            .addComponent(comboAfp, javax.swing.GroupLayout.Alignment.LEADING, 0, 274, Short.MAX_VALUE)
+                                            .addComponent(fieldMovilizacion, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(fieldColacion, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(fieldSueldoBase, javax.swing.GroupLayout.Alignment.LEADING))
                                         .addGap(0, 0, 0)
                                         .addComponent(jLabel6))))
                             .addGroup(layout.createSequentialGroup()
@@ -292,26 +296,22 @@ public class RemIFMAgregar extends javax.swing.JInternalFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        /*AfpDAO afpDao = new AfpDAO();
         
-        ArrayList<Afp> listaAfp = afpDao.listaDeAfp();
-        */
-        
-        int rut = Integer.valueOf(fieldRut.getText());
-        int dv  = Integer.valueOf(fieldDV.getText());
-        String nombre = fieldNombre.getText();
-        String apellidoP = fieldApellidoP.getText();
-        String apellidoM = fieldApellidoM.getText();
-        String fechaNacimiento = fieldNacimiento.getText();
-        String direccion = fieldDireccion.getText();
+        int rut                 = Integer.valueOf(fieldRut.getText());
+        int dv                  = Integer.valueOf(fieldDV.getText());
+        String nombre           = fieldNombre.getText();
+        String apellidoP        = fieldApellidoP.getText();
+        String apellidoM        = fieldApellidoM.getText();
+        String fechaNacimiento  = fieldNacimiento.getText();
+        String direccion        = fieldDireccion.getText();
         //Object idCiudad =  comboCiudad.getSelectedItem();
-        int idCiudad =  1;
-        int sueldoBase = Integer.valueOf(fieldSueldoBase.getText());
-        int bonoColacion = Integer.valueOf(fieldColacion.getText());
-        int bonoMovilizacion = Integer.valueOf(fieldMovilizacion.getText());
-        //Object idAfp = comboAfp.getSelectedItem();
-        int idAfp = 1;
         
+        int idCiudad            =  1;
+        int sueldoBase          = Integer.valueOf(fieldSueldoBase.getText());
+        int bonoColacion        = Integer.valueOf(fieldColacion.getText());
+        int bonoMovilizacion    = Integer.valueOf(fieldMovilizacion.getText());
+        //Object idAfp = comboAfp.getSelectedItem();
+        int idAfp               = comboAfp.getSelectedIndex();
         Persona nuevaPersona = new Persona(nombre,apellidoP,apellidoM,direccion,fechaNacimiento,rut,dv,idCiudad,sueldoBase,bonoColacion,bonoMovilizacion,idAfp);
         
         PersonaDAO daoPersona = new PersonaDAO();
@@ -323,6 +323,10 @@ public class RemIFMAgregar extends javax.swing.JInternalFrame {
     private void comboCiudadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboCiudadActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_comboCiudadActionPerformed
+
+    private void comboAfpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboAfpActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboAfpActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
