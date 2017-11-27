@@ -28,26 +28,21 @@ public class RemIFMEditar extends javax.swing.JInternalFrame {
     public void mostrarListaPersonasInTable(){
         PersonaDAO daoPersona = new PersonaDAO();
         DefaultTableModel model = (DefaultTableModel)jTableMostrar.getModel();
-        Object[] row = new Object[4];
+        Object[] row = new Object[11];
         for(int i = 0; i < daoPersona.getListaPersonas().size(); i++){
             row[0] = daoPersona.getListaPersonas().get(i).getRut();
             row[1] = daoPersona.getListaPersonas().get(i).getNombre();
             row[2] = daoPersona.getListaPersonas().get(i).getApellidoPat();
             row[3] = daoPersona.getListaPersonas().get(i).getApellidoMat();
+            row[4] = daoPersona.getListaPersonas().get(i).getFechaNacimiento();
+            row[5] = daoPersona.getListaPersonas().get(i).getDireccion();
+            row[6] = daoPersona.getListaPersonas().get(i).getIdCiudad();
+            row[7] = daoPersona.getListaPersonas().get(i).getSueldoBase();
+            row[8] = daoPersona.getListaPersonas().get(i).getBonoColacion();
+            row[9] = daoPersona.getListaPersonas().get(i).getBonoMovilizacion();
+            row[10] = daoPersona.getListaPersonas().get(i).getIdAfp();
             model.addRow(row);
         }
-       //ArrayList<PersonaDAO> listaPersonas = daoPersona.getListaPersonas();
-      /* DefaultTableModel model = (DefaultTableModel)jTable_Display_Users.getModel();
-       Object[] row = new Object[4];
-       for(int i = 0; i < list.size(); i++)
-       {
-           row[0] = list.get(i).getId();
-           row[1] = list.get(i).getFirstName();
-           row[2] = list.get(i).getLastNAme();
-           row[3] = list.get(i).getAge();
-           
-           model.addRow(row);
-       }*/
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -59,7 +54,7 @@ public class RemIFMEditar extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         fieldNombre = new javax.swing.JTextField();
-        ApellidoM = new javax.swing.JTextField();
+        fieldApellidoM = new javax.swing.JTextField();
         fieldApellidoP = new javax.swing.JTextField();
         fieldNacimiento = new javax.swing.JTextField();
         fieldDireccion = new javax.swing.JTextField();
@@ -70,11 +65,11 @@ public class RemIFMEditar extends javax.swing.JInternalFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        FieldSueldoBase = new javax.swing.JTextField();
+        fieldSueldoBase = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         fieldBonoColacion = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        fieldBonoMovilzacion = new javax.swing.JTextField();
+        fieldBonoMovilizacion = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jComboBox2 = new javax.swing.JComboBox<>();
@@ -113,15 +108,46 @@ public class RemIFMEditar extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Rut", "Nombre", "Apellido Paterno", "Apellido Materno"
+                "Rut", "Nombre", "Apellido Paterno", "Apellido Materno", "Fecha de Nacimiento", "Dirección", "Ciudad", "Sueldo Base", "Bono Colación", "Bono Movilización", "Afp"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jTableMostrar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTableMostrarMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(jTableMostrar);
+        if (jTableMostrar.getColumnModel().getColumnCount() > 0) {
+            jTableMostrar.getColumnModel().getColumn(4).setMinWidth(0);
+            jTableMostrar.getColumnModel().getColumn(4).setPreferredWidth(0);
+            jTableMostrar.getColumnModel().getColumn(4).setMaxWidth(0);
+            jTableMostrar.getColumnModel().getColumn(5).setMinWidth(0);
+            jTableMostrar.getColumnModel().getColumn(5).setPreferredWidth(0);
+            jTableMostrar.getColumnModel().getColumn(5).setMaxWidth(0);
+            jTableMostrar.getColumnModel().getColumn(6).setMinWidth(0);
+            jTableMostrar.getColumnModel().getColumn(6).setPreferredWidth(0);
+            jTableMostrar.getColumnModel().getColumn(6).setMaxWidth(0);
+            jTableMostrar.getColumnModel().getColumn(7).setMinWidth(0);
+            jTableMostrar.getColumnModel().getColumn(7).setPreferredWidth(0);
+            jTableMostrar.getColumnModel().getColumn(7).setMaxWidth(0);
+            jTableMostrar.getColumnModel().getColumn(8).setMinWidth(0);
+            jTableMostrar.getColumnModel().getColumn(8).setPreferredWidth(0);
+            jTableMostrar.getColumnModel().getColumn(8).setMaxWidth(0);
+            jTableMostrar.getColumnModel().getColumn(9).setMinWidth(0);
+            jTableMostrar.getColumnModel().getColumn(9).setPreferredWidth(0);
+            jTableMostrar.getColumnModel().getColumn(9).setMaxWidth(0);
+            jTableMostrar.getColumnModel().getColumn(10).setMinWidth(0);
+            jTableMostrar.getColumnModel().getColumn(10).setPreferredWidth(0);
+            jTableMostrar.getColumnModel().getColumn(10).setMaxWidth(0);
+        }
 
         jButton1.setText("Editar");
 
@@ -139,13 +165,13 @@ public class RemIFMEditar extends javax.swing.JInternalFrame {
                                     .addComponent(jLabel1)
                                     .addComponent(jLabel2)
                                     .addComponent(jLabel3)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(51, 51, 51)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(fieldApellidoP, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
-                                    .addComponent(ApellidoM, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
+                                    .addComponent(fieldApellidoM, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
                                     .addComponent(fieldNombre)
                                     .addComponent(fieldNacimiento, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
                                     .addComponent(fieldDireccion, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
@@ -154,7 +180,7 @@ public class RemIFMEditar extends javax.swing.JInternalFrame {
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(51, 51, 51)
-                                    .addComponent(FieldSueldoBase, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(fieldSueldoBase, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(51, 51, 51)
@@ -162,7 +188,7 @@ public class RemIFMEditar extends javax.swing.JInternalFrame {
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(51, 51, 51)
-                                    .addComponent(fieldBonoMovilzacion, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(fieldBonoMovilizacion, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -189,7 +215,7 @@ public class RemIFMEditar extends javax.swing.JInternalFrame {
                             .addComponent(jLabel3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(ApellidoM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(fieldApellidoM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -205,7 +231,7 @@ public class RemIFMEditar extends javax.swing.JInternalFrame {
                             .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(FieldSueldoBase, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(fieldSueldoBase, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel7))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -213,7 +239,7 @@ public class RemIFMEditar extends javax.swing.JInternalFrame {
                             .addComponent(jLabel8))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(fieldBonoMovilzacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(fieldBonoMovilizacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel9))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -222,7 +248,7 @@ public class RemIFMEditar extends javax.swing.JInternalFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         pack();
@@ -232,19 +258,28 @@ public class RemIFMEditar extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         int i = jTableMostrar.getSelectedRow();
         TableModel model = jTableMostrar.getModel();
-        fieldNombre.setText(model.getValueAt(i,0).toString());
+        fieldNombre.setText(model.getValueAt(i,1).toString());
+        fieldApellidoP.setText(model.getValueAt(i,2).toString());
+        fieldApellidoM.setText(model.getValueAt(i,3).toString());
+        fieldNacimiento.setText(model.getValueAt(i,4).toString());
+        fieldDireccion.setText(model.getValueAt(i,5).toString());
+        //faltaCiudad
+        fieldSueldoBase.setText(model.getValueAt(i,7).toString());
+        fieldBonoColacion.setText(model.getValueAt(i,8).toString());
+        fieldBonoMovilizacion.setText(model.getValueAt(i,9).toString());
+        //faltaAfp
     }//GEN-LAST:event_jTableMostrarMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField ApellidoM;
-    private javax.swing.JTextField FieldSueldoBase;
+    private javax.swing.JTextField fieldApellidoM;
     private javax.swing.JTextField fieldApellidoP;
     private javax.swing.JTextField fieldBonoColacion;
-    private javax.swing.JTextField fieldBonoMovilzacion;
+    private javax.swing.JTextField fieldBonoMovilizacion;
     private javax.swing.JTextField fieldDireccion;
     private javax.swing.JTextField fieldNacimiento;
     private javax.swing.JTextField fieldNombre;
+    private javax.swing.JTextField fieldSueldoBase;
     private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
