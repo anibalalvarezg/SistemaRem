@@ -10,10 +10,11 @@ import javax.swing.JOptionPane;
 
 import DAO.PersonaDAO;
 import DAO.AfpDAO;
+import DAO.CiudadDao;
 
 import VO.Persona;
 import VO.Afp;
-
+import VO.Ciudad;
 
 /**
  *
@@ -30,7 +31,14 @@ public class RemIFMAgregar extends javax.swing.JInternalFrame {
         ArrayList<Afp> listaAfp = afp.listaDeAfp();
         
         for(Afp a: listaAfp){
-            comboAfp.addItem(a.getNombre());
+                comboAfp.addItem(a.getNombre());
+        }
+        
+        CiudadDao ciudad = new CiudadDao();
+        ArrayList<Ciudad> listaCiudad = ciudad.listaCiudad();
+
+        for(Ciudad c: listaCiudad) {
+            comboCiudad.addItem(c.getNombre());
         }
         
     }
@@ -142,7 +150,6 @@ public class RemIFMAgregar extends javax.swing.JInternalFrame {
             }
         });
 
-        comboCiudad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         comboCiudad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboCiudadActionPerformed(evt);
@@ -312,7 +319,7 @@ public class RemIFMAgregar extends javax.swing.JInternalFrame {
         String direccion        = fieldDireccion.getText();
         //Object idCiudad =  comboCiudad.getSelectedItem();
         
-        int idCiudad            =  1;
+        int idCiudad            =  comboCiudad.getSelectedIndex()+1;
         int sueldoBase          = Integer.valueOf(fieldSueldoBase.getText());
         int bonoColacion        = Integer.valueOf(fieldColacion.getText());
         int bonoMovilizacion    = Integer.valueOf(fieldMovilizacion.getText());
