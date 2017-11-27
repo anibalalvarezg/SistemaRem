@@ -132,7 +132,7 @@ public class RemGui extends javax.swing.JFrame {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
-        RemIFMAgregar agregarP = new RemIFMAgregar();
+       RemIFMAgregar agregarP = new RemIFMAgregar();
         
        this.jDesktopPane1.add(agregarP);
        agregarP.show();
@@ -160,6 +160,9 @@ public class RemGui extends javax.swing.JFrame {
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         // TODO add your handling code here:
+        RemIFMPagoMultiple pagoM = new RemIFMPagoMultiple();
+        this.jDesktopPane1.add(pagoM);
+        pagoM.show();
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     /**
