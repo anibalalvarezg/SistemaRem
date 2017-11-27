@@ -26,6 +26,13 @@ public class RemIFMAgregar extends javax.swing.JInternalFrame {
      */
     public RemIFMAgregar() {
         initComponents();
+        AfpDAO afp = new AfpDAO();
+        ArrayList<Afp> listaAfp = afp.listaDeAfp();
+        
+        for(Afp a: listaAfp){
+            comboAfp.addItem(a.getNombre());
+        }
+        
     }
 
     /**
@@ -144,7 +151,6 @@ public class RemIFMAgregar extends javax.swing.JInternalFrame {
 
         jLabel14.setText("Afp");
 
-        comboAfp.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Habitad", "Cuprum" }));
         comboAfp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboAfpActionPerformed(evt);
