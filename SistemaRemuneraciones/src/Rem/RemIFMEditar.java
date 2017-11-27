@@ -45,22 +45,6 @@ public class RemIFMEditar extends javax.swing.JInternalFrame {
             row[11] = p.getIdAfp();
             model.addRow(row);
         }
-        /*
-        for(int i = 0; i < daoPersona.getListaPersonas().size(); i++){
-            row[0] = daoPersona.getListaPersonas().get(i).getRut();
-            row[1] = daoPersona.getListaPersonas().get(i).getDv();
-            row[2] = daoPersona.getListaPersonas().get(i).getNombre();
-            row[3] = daoPersona.getListaPersonas().get(i).getApellidoPat();
-            row[4] = daoPersona.getListaPersonas().get(i).getApellidoMat();
-            row[5] = daoPersona.getListaPersonas().get(i).getFechaNacimiento();
-            row[6] = daoPersona.getListaPersonas().get(i).getDireccion();
-            row[7] = daoPersona.getListaPersonas().get(i).getIdCiudad();
-            row[8] = daoPersona.getListaPersonas().get(i).getSueldoBase();
-            row[9] = daoPersona.getListaPersonas().get(i).getBonoColacion();
-            row[10] = daoPersona.getListaPersonas().get(i).getBonoMovilizacion();
-            row[11] = daoPersona.getListaPersonas().get(i).getIdAfp();
-            model.addRow(row);
-        }*/
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -99,6 +83,7 @@ public class RemIFMEditar extends javax.swing.JInternalFrame {
         fieldRut = new javax.swing.JTextField();
 
         setClosable(true);
+        setTitle("Editar Persona");
 
         jLabel1.setText("Nombre");
 
