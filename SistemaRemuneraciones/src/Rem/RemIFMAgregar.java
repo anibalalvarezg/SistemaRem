@@ -311,7 +311,8 @@ public class RemIFMAgregar extends javax.swing.JInternalFrame {
         int bonoColacion        = Integer.valueOf(fieldColacion.getText());
         int bonoMovilizacion    = Integer.valueOf(fieldMovilizacion.getText());
         //Object idAfp = comboAfp.getSelectedItem();
-        int idAfp               = comboAfp.getSelectedIndex();
+        int idAfp               = comboAfp.getSelectedIndex()+1;
+        
         Persona nuevaPersona = new Persona(nombre,apellidoP,apellidoM,direccion,fechaNacimiento,rut,dv,idCiudad,sueldoBase,bonoColacion,bonoMovilizacion,idAfp);
         
         PersonaDAO daoPersona = new PersonaDAO();
