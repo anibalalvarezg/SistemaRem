@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 
 import DAO.PersonaDAO;
 import DAO.AfpDAO;
-import DAO.CiudadDao;
+import DAO.ciudadDAO;
 
 import VO.Persona;
 import VO.Afp;
@@ -34,7 +34,7 @@ public class RemIFMAgregar extends javax.swing.JInternalFrame {
                 comboAfp.addItem(a.getNombre());
         }
         
-        CiudadDao ciudad = new CiudadDao();
+        ciudadDAO ciudad = new ciudadDAO();
         ArrayList<Ciudad> listaCiudad = ciudad.listaCiudad();
 
         for(Ciudad c: listaCiudad) {
