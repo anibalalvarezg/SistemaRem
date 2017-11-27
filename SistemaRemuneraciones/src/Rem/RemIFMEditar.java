@@ -154,6 +154,11 @@ public class RemIFMEditar extends javax.swing.JInternalFrame {
         }
 
         jButton1.setText("Editar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jLabel11.setText("Rut");
 
@@ -293,6 +298,31 @@ public class RemIFMEditar extends javax.swing.JInternalFrame {
         fieldBonoMovilizacion.setText(model.getValueAt(i,10).toString());
         //faltaAfp
     }//GEN-LAST:event_jTableMostrarMouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        int rut                 = Integer.valueOf(fieldRut.getText());
+        int dv                  = Integer.valueOf(fieldDV.getText());
+        String nombre           = fieldNombre.getText();
+        String apellidoP        = fieldApellidoP.getText();
+        String apellidoM        = fieldApellidoM.getText();
+        String fechaNacimiento  = fieldNacimiento.getText();
+        String direccion        = fieldDireccion.getText();
+        //Object idCiudad =  comboCiudad.getSelectedItem();
+        
+        int idCiudad            =  1;
+        int sueldoBase          = Integer.valueOf(fieldSueldoBase.getText());
+        int bonoColacion        = Integer.valueOf(fieldBonoColacion.getText());
+        int bonoMovilizacion    = Integer.valueOf(fieldBonoMovilizacion.getText());
+        //Object idAfp = comboAfp.getSelectedItem();
+        //int idAfp               = comboAfp.getSelectedIndex()+1;
+        int idAfp               =  1;
+        
+        Persona editarPersona = new Persona(nombre,apellidoP,apellidoM,direccion,fechaNacimiento,rut,dv,idCiudad,sueldoBase,bonoColacion,bonoMovilizacion,idAfp);
+        
+        PersonaDAO daoPersona = new PersonaDAO();
+        daoPersona.editarPersona(editarPersona);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

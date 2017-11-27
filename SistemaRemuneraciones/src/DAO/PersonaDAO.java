@@ -101,6 +101,23 @@ public class PersonaDAO {
         }
     
     }
+
+    public void editarPersona(Persona editarPersona) {
+        ConexionBd conex= new ConexionBd();
+        try {
+            
+            Statement estatuto = conex.getConnection().createStatement();
+            estatuto.executeUpdate("UPDATE `erpremuneraciones`.`REM_Personal` SET `nombre`='"+editarPersona.getNombre()+"', `apellidoP`='"+editarPersona.getApellidoPat()+"', `apellidoM`='"+editarPersona.getApellidoMat()+"', `fechaNacimiento`='"+editarPersona.getFechaNacimiento()+"', `direccion`='"+editarPersona.getDireccion()+"', `bonoColacion`="+editarPersona.getBonoColacion()+", `bonoMovilizacion`="+editarPersona.getBonoMovilizacion()+", `codigoAfp`="+editarPersona.getIdAfp()+", `idCiudad`="+editarPersona.getIdCiudad()+" WHERE `rut`='"+editarPersona.getRut()+"'");
+
+            JOptionPane.showMessageDialog(null, "Se ha editado Exitosamente","Información",JOptionPane.INFORMATION_MESSAGE);
+            estatuto.close();
+            conex.desconectar();
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null, "No se edito la persona");
+        }
+    }
     
  
 }
