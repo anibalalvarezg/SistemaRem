@@ -5,6 +5,12 @@
  */
 package Rem;
 
+import DAO.PersonaDAO;
+import VO.Persona;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+
 /**
  *
  * @author Drebin01
@@ -16,6 +22,29 @@ public class RemIFMPagoMultiple extends javax.swing.JInternalFrame {
      */
     public RemIFMPagoMultiple() {
         initComponents();
+        mostrarListaPersonasInTable();
+    }
+    
+    public void mostrarListaPersonasInTable(){
+        PersonaDAO daoPersona = new PersonaDAO();
+        DefaultTableModel model = (DefaultTableModel)jTableMostrar.getModel();
+        Object[] row = new Object[12];
+        ArrayList<Persona> listaPersonas = daoPersona.getListaPersonas();
+        for(Persona p: listaPersonas){
+            row[0]  = p.getRut();
+            row[1]  = p.getDv();
+            row[2]  = p.getNombre();
+            row[3]  = p.getApellidoPat();
+            row[4]  = p.getApellidoMat();
+            row[5]  = p.getFechaNacimiento();
+            row[6]  = p.getDireccion();
+            row[7]  = p.getIdCiudad();
+            row[8]  = p.getSueldoBase();
+            row[9]  = p.getBonoColacion();
+            row[10] = p.getBonoMovilizacion();
+            row[11] = p.getIdAfp();
+            model.addRow(row);
+        }
     }
 
     /**
@@ -28,9 +57,9 @@ public class RemIFMPagoMultiple extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTableMostrar = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        jTableStack = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -41,12 +70,9 @@ public class RemIFMPagoMultiple extends javax.swing.JInternalFrame {
         setClosable(true);
         setTitle("Pagos Multiples");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTableMostrar.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Rut", "Nombre", "Apellido Paterno", "Apellido Materno"
@@ -60,14 +86,16 @@ public class RemIFMPagoMultiple extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jTableMostrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableMostrarMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jTableMostrar);
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        jTableStack.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Rut", "Nombre", "Apellido Paterno", "Apellido Materno"
@@ -81,7 +109,7 @@ public class RemIFMPagoMultiple extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(jTableStack);
 
         jButton1.setText("Selccionar todo");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -177,6 +205,19 @@ public class RemIFMPagoMultiple extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
+    private void jTableMostrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableMostrarMouseClicked
+        // TODO add your handling code here:
+        DefaultTableModel modelStack = (DefaultTableModel)jTableStack.getModel();
+        int i = jTableMostrar.getSelectedRow();
+        TableModel model = jTableMostrar.getModel();
+        Object[] row = new Object[4];
+        row[0]  = model.getValueAt(i,0).toString();
+        row[1]  = model.getValueAt(i,1).toString();
+        row[2]  = model.getValueAt(i,2).toString();
+        row[3]  = model.getValueAt(i,3).toString();
+        modelStack.addRow(row);
+    }//GEN-LAST:event_jTableMostrarMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -186,8 +227,8 @@ public class RemIFMPagoMultiple extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
+    private javax.swing.JTable jTableMostrar;
+    private javax.swing.JTable jTableStack;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }
