@@ -343,13 +343,13 @@ public class RemIFMEditar extends javax.swing.JInternalFrame {
         String direccion        = fieldDireccion.getText();
         //Object idCiudad =  comboCiudad.getSelectedItem();
         
-        int idCiudad            =  1;
+        int idCiudad            =  comboCiudad.getSelectedIndex()+1;
         int sueldoBase          = Integer.valueOf(fieldSueldoBase.getText());
         int bonoColacion        = Integer.valueOf(fieldBonoColacion.getText());
         int bonoMovilizacion    = Integer.valueOf(fieldBonoMovilizacion.getText());
         //Object idAfp = comboAfp.getSelectedItem();
         //int idAfp               = comboAfp.getSelectedIndex()+1;
-        int idAfp               =  1;
+        int idAfp               = comboAfp.getSelectedIndex()+1;
         
         Persona editarPersona = new Persona(nombre,apellidoP,apellidoM,direccion,fechaNacimiento,rut,dv,idCiudad,sueldoBase,bonoColacion,bonoMovilizacion,idAfp);
         
