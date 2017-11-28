@@ -196,8 +196,12 @@ public class RemIFMEditar extends javax.swing.JInternalFrame {
         jLabel11.setText("Rut");
 
         fieldDV.setEditable(false);
+        fieldDV.setBackground(new java.awt.Color(204, 204, 204));
+        fieldDV.setForeground(new java.awt.Color(153, 153, 153));
 
         fieldRut.setEditable(false);
+        fieldRut.setBackground(new java.awt.Color(204, 204, 204));
+        fieldRut.setForeground(new java.awt.Color(153, 153, 153));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
