@@ -27,6 +27,7 @@ public class RemIFMAgregar extends javax.swing.JInternalFrame {
      */
     public RemIFMAgregar() {
         initComponents();
+        verificacionDV.setVisible(false);
         AfpDAO afp = new AfpDAO();
         ArrayList<Afp> listaAfp = afp.listaDeAfp();
         
@@ -82,9 +83,7 @@ public class RemIFMAgregar extends javax.swing.JInternalFrame {
         jLabel14 = new javax.swing.JLabel();
         comboAfp = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextPane1 = new javax.swing.JTextPane();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTextPane2 = new javax.swing.JTextPane();
+        verificacionDV = new javax.swing.JTextPane();
 
         jButton1.setText("jButton1");
 
@@ -110,9 +109,22 @@ public class RemIFMAgregar extends javax.swing.JInternalFrame {
 
         jLabel2.setText("Rut");
 
+        fieldDV.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                fieldDVMouseExited(evt);
+            }
+        });
         fieldDV.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 fieldDVActionPerformed(evt);
+            }
+        });
+        fieldDV.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                fieldDVKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                fieldDVKeyTyped(evt);
             }
         });
 
@@ -134,6 +146,11 @@ public class RemIFMAgregar extends javax.swing.JInternalFrame {
             }
         });
 
+        fieldRut.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                fieldRutMouseExited(evt);
+            }
+        });
         fieldRut.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 fieldRutActionPerformed(evt);
@@ -148,6 +165,12 @@ public class RemIFMAgregar extends javax.swing.JInternalFrame {
 
         jLabel13.setText("Bono Movilización");
 
+        fieldSueldoBase.setText("0");
+
+        fieldColacion.setText("0");
+        fieldColacion.setToolTipText("");
+
+        fieldMovilizacion.setText("0");
         fieldMovilizacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 fieldMovilizacionActionPerformed(evt);
@@ -160,7 +183,7 @@ public class RemIFMAgregar extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel14.setText("Afp");
+        jLabel14.setText("AFP");
 
         comboAfp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -168,14 +191,15 @@ public class RemIFMAgregar extends javax.swing.JInternalFrame {
             }
         });
 
-        jTextPane1.addFocusListener(new java.awt.event.FocusAdapter() {
+        jScrollPane1.setBorder(null);
+
+        verificacionDV.setBorder(null);
+        verificacionDV.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
-                jTextPane1FocusLost(evt);
+                verificacionDVFocusLost(evt);
             }
         });
-        jScrollPane1.setViewportView(jTextPane1);
-
-        jScrollPane2.setViewportView(jTextPane2);
+        jScrollPane1.setViewportView(verificacionDV);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -227,9 +251,7 @@ public class RemIFMAgregar extends javax.swing.JInternalFrame {
                                         .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 7, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(fieldDV, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jScrollPane2)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(11, 11, 11)))))
                         .addGap(24, 24, 24))
@@ -252,8 +274,7 @@ public class RemIFMAgregar extends javax.swing.JInternalFrame {
                         .addComponent(fieldDV, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(fieldRut, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel10))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(fieldNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -299,7 +320,7 @@ public class RemIFMAgregar extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14)
                     .addComponent(comboAfp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
                 .addComponent(jButton2)
                 .addGap(24, 24, 24))
         );
@@ -329,7 +350,14 @@ public class RemIFMAgregar extends javax.swing.JInternalFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        String hola = verificacionDV.getText();
+        String chao = fieldDV.getText();
         
+        if (hola.equals(chao)==false){
+            JOptionPane.showMessageDialog(null, "El RUT ingresado no es válido");
+            fieldDV.setText("");
+        }else {
+   
         int rut                 = Integer.valueOf(fieldRut.getText());
         int dv                  = Integer.valueOf(fieldDV.getText());
         String nombre           = fieldNombre.getText();
@@ -346,11 +374,15 @@ public class RemIFMAgregar extends javax.swing.JInternalFrame {
         //Object idAfp = comboAfp.getSelectedItem();
         int idAfp               = comboAfp.getSelectedIndex()+1;
         
+        if (nombre==null || apellidoP==null || apellidoM==null || fechaNacimiento==null || direccion==null || idCiudad==0 || sueldoBase==0 || idAfp==0){
+            JOptionPane.showMessageDialog(null, "Existen campos vacíos por rellenar");
+        }
+        
         Persona nuevaPersona = new Persona(nombre,apellidoP,apellidoM,direccion,fechaNacimiento,rut,dv,idCiudad,sueldoBase,bonoColacion,bonoMovilizacion,idAfp);
         
         PersonaDAO daoPersona = new PersonaDAO();
         daoPersona.registrarPersona(nuevaPersona);
-        
+        }    
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -362,11 +394,58 @@ public class RemIFMAgregar extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_comboAfpActionPerformed
 
-    private void jTextPane1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextPane1FocusLost
+    private void fieldRutMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fieldRutMouseExited
         // TODO add your handling code here:
         int rut = Integer.valueOf(fieldRut.getText());
-        System.out.println(rut);
-    }//GEN-LAST:event_jTextPane1FocusLost
+        
+        int[] arr_rut = new int[9];
+        int sum = 0 , aux = 0 , cod_ver = 0;
+        int i;
+        int j=2;
+        String cv;
+        
+        for (i = 0; i < String.valueOf(fieldRut.getText()).length(); i++) {
+            arr_rut[i] = rut%10;
+            rut = rut/10;
+        }
+               
+        for (i = 0 ; i < String.valueOf(fieldRut.getText()).length();i++){
+            if (j>7) j=2;
+            sum = sum + (arr_rut[i]*j);
+            j++;
+        }
+        aux = sum;  //se almacema en otra variable porque luego requeriremos este valor.
+        sum = sum/11;
+        sum = sum*11;   
+        aux = aux - sum;
+        cod_ver = 11 - aux;
+        if (cod_ver == 10 ){
+            cv = "K";
+        }else if(cod_ver == 11){
+            cv = "0";
+        }else {
+            cv = Integer.toString(cod_ver);
+        }
+        
+       verificacionDV.setText(cv);
+    }//GEN-LAST:event_fieldRutMouseExited
+
+    private void verificacionDVFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_verificacionDVFocusLost
+        // TODO add your handling code here:
+    }//GEN-LAST:event_verificacionDVFocusLost
+
+    private void fieldDVMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fieldDVMouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fieldDVMouseExited
+
+    private void fieldDVKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fieldDVKeyTyped
+        // TODO add your handling code here
+    }//GEN-LAST:event_fieldDVKeyTyped
+
+    private void fieldDVKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fieldDVKeyPressed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_fieldDVKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -400,8 +479,6 @@ public class RemIFMAgregar extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextPane jTextPane1;
-    private javax.swing.JTextPane jTextPane2;
+    private javax.swing.JTextPane verificacionDV;
     // End of variables declaration//GEN-END:variables
 }
