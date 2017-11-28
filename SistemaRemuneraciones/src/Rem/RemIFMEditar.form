@@ -277,7 +277,7 @@
                 <Column editable="false" title="Bono Colaci&#xf3;n" type="java.lang.Object"/>
                 <Column editable="false" title="Bono Movilizaci&#xf3;n" type="java.lang.Object"/>
                 <Column editable="false" title="Afp" type="java.lang.Object"/>
-                <Column editable="false" title="blabla" type="java.lang.Object"/>
+                <Column editable="false" title="dv" type="java.lang.Object"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">

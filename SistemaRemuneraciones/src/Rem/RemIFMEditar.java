@@ -52,17 +52,17 @@ public class RemIFMEditar extends javax.swing.JInternalFrame {
         ArrayList<Persona> listaPersonas = daoPersona.getListaPersonas();
         for(Persona p: listaPersonas){
             row[0]  = p.getRut();
-            row[1]  = p.getDv();
-            row[2]  = p.getNombre();
-            row[3]  = p.getApellidoPat();
-            row[4]  = p.getApellidoMat();
-            row[5]  = p.getFechaNacimiento();
-            row[6]  = p.getDireccion();
-            row[7]  = p.getIdCiudad();
-            row[8]  = p.getSueldoBase();
-            row[9]  = p.getBonoColacion();
-            row[10] = p.getBonoMovilizacion();
-            row[11] = p.getIdAfp();
+            row[1]  = p.getNombre();
+            row[2]  = p.getApellidoPat();
+            row[3]  = p.getApellidoMat();
+            row[4]  = p.getFechaNacimiento();
+            row[5]  = p.getDireccion();
+            row[6]  = p.getIdCiudad();
+            row[7]  = p.getSueldoBase();
+            row[8]  = p.getBonoColacion();
+            row[9] = p.getBonoMovilizacion();
+            row[10] = p.getIdAfp();
+            row[11]  = p.getDv();
             model.addRow(row);
         }
     }
@@ -142,7 +142,7 @@ public class RemIFMEditar extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Rut", "Nombre", "Apellido Paterno", "Apellido Materno", "Fecha de Nacimiento", "Dirección", "Ciudad", "Sueldo Base", "Bono Colación", "Bono Movilización", "Afp", "blabla"
+                "Rut", "Nombre", "Apellido Paterno", "Apellido Materno", "Fecha de Nacimiento", "Dirección", "Ciudad", "Sueldo Base", "Bono Colación", "Bono Movilización", "Afp", "dv"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -319,17 +319,17 @@ public class RemIFMEditar extends javax.swing.JInternalFrame {
         int i = jTableMostrar.getSelectedRow();
         TableModel model = jTableMostrar.getModel();
         fieldRut.setText(model.getValueAt(i,0).toString());
-        fieldDV.setText(model.getValueAt(i,1).toString());
-        fieldNombre.setText(model.getValueAt(i,2).toString());
-        fieldApellidoP.setText(model.getValueAt(i,3).toString());
-        fieldApellidoM.setText(model.getValueAt(i,4).toString());
-        fieldNacimiento.setText(model.getValueAt(i,5).toString());
-        fieldDireccion.setText(model.getValueAt(i,6).toString());
-        comboCiudad.setSelectedIndex((int) model.getValueAt(i,7)-1);
-        fieldSueldoBase.setText(model.getValueAt(i,8).toString());
-        fieldBonoColacion.setText(model.getValueAt(i,9).toString());
-        fieldBonoMovilizacion.setText(model.getValueAt(i,10).toString());
-        comboAfp.setSelectedIndex((int)model.getValueAt(i,11)-1);
+        fieldDV.setText(model.getValueAt(i,11).toString());
+        fieldNombre.setText(model.getValueAt(i,1).toString());
+        fieldApellidoP.setText(model.getValueAt(i,2).toString());
+        fieldApellidoM.setText(model.getValueAt(i,3).toString());
+        fieldNacimiento.setText(model.getValueAt(i,4).toString());
+        fieldDireccion.setText(model.getValueAt(i,5).toString());
+        comboCiudad.setSelectedIndex((int) model.getValueAt(i,6)-1);
+        fieldSueldoBase.setText(model.getValueAt(i,7).toString());
+        fieldBonoColacion.setText(model.getValueAt(i,8).toString());
+        fieldBonoMovilizacion.setText(model.getValueAt(i,9).toString());
+        comboAfp.setSelectedIndex((int)model.getValueAt(i,10)-1);
     }//GEN-LAST:event_jTableMostrarMouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

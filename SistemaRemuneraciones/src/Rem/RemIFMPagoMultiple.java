@@ -32,17 +32,17 @@ public class RemIFMPagoMultiple extends javax.swing.JInternalFrame {
         ArrayList<Persona> listaPersonas = daoPersona.getListaPersonas();
         for(Persona p: listaPersonas){
             row[0]  = p.getRut();
-            row[1]  = p.getDv();
-            row[2]  = p.getNombre();
-            row[3]  = p.getApellidoPat();
-            row[4]  = p.getApellidoMat();
-            row[5]  = p.getFechaNacimiento();
-            row[6]  = p.getDireccion();
-            row[7]  = p.getIdCiudad();
-            row[8]  = p.getSueldoBase();
-            row[9]  = p.getBonoColacion();
-            row[10] = p.getBonoMovilizacion();
-            row[11] = p.getIdAfp();
+            row[1]  = p.getNombre();
+            row[2]  = p.getApellidoPat();
+            row[3]  = p.getApellidoMat();
+            row[4]  = p.getFechaNacimiento();
+            row[5]  = p.getDireccion();
+            row[6]  = p.getIdCiudad();
+            row[7]  = p.getSueldoBase();
+            row[8]  = p.getBonoColacion();
+            row[9] = p.getBonoMovilizacion();
+            row[10] = p.getIdAfp();            
+            row[11]  = p.getDv();
             model.addRow(row);
         }
     }
