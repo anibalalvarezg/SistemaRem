@@ -35,6 +35,24 @@ public class RemuneracionDAO {
         }
     }
     
+    public void registrarPagos(ArrayList<Remuneracion> listaRem) {
+        ConexionBd conex= new ConexionBd();
+        try {
+            int i = 0;
+            
+            Statement st = conex.getConnection().createStatement();
+            for(Remuneracion r: listaRem){
+                st.executeUpdate("INSERT INTO erpremuneraciones.`REM_Remuneracion` (fecha, montoBruto, montoLiquido, seguroCesantia, descuentoAfp, descuentoRenta, PersonalRut,comisiones) VALUES ('"+r.getFecha()+"',"+r.getMontoBruto()+","+r.getMontoLiquido()+","+r.getSeguroCesantia()+","+r.getDescuentoAfp()+","+r.getDescuentoRenta()+","+r.getPersonaRut()+","+r.getComisiones()+")");
+            }
+            JOptionPane.showMessageDialog(null, "Se han pagado exitosamente","Información",JOptionPane.INFORMATION_MESSAGE);
+            st.close();
+            conex.desconectar();
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null, "No se registró la persona");
+        }
+    }
     public int consultarPago(int rut, String fecha){
         ConexionBd conex= new ConexionBd();
         int resultado = 0;

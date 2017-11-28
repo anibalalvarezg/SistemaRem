@@ -265,7 +265,7 @@ public class RemIFMPagoMultiple extends javax.swing.JInternalFrame {
         AfpDAO afp      = new AfpDAO();
         PersonaDAO p    = new PersonaDAO();
         DefaultTableModel modelStack = (DefaultTableModel)jTableStack.getModel();
-        //PersonaDAO daoPersona = new PersonaDAO();
+        ArrayList<Remuneracion> listaRemuneraciones = new ArrayList<Remuneracion>();
         
         int idMes = comboFecha.getSelectedIndex() + 1;
         for(int i = 0; i < modelStack.getRowCount(); i++){
@@ -286,11 +286,12 @@ public class RemIFMPagoMultiple extends javax.swing.JInternalFrame {
             String fechaFinal = Integer.toString(year) + "-"+ Integer.toString(idMes)+ "-"+Integer.toString(dia);
 
             Remuneracion rem = new Remuneracion(fechaFinal,  (int)sueldoBruto,sueldoLiquido,descuentoCesantia,descuentoAfp,descuentoRenta,comision,Integer.parseInt(modelStack.getValueAt(i, 0).toString()));
-
-            RemuneracionDAO r = new RemuneracionDAO();
-
-            r.registrarPago(rem);
+    
+            listaRemuneraciones.add(rem);
+            
         }
+        RemuneracionDAO r = new RemuneracionDAO();
+        r.registrarPagos(listaRemuneraciones);
     }//GEN-LAST:event_jButton3ActionPerformed
     private float impuestoRenta(float valor){
     
