@@ -7,6 +7,7 @@ package Rem;
 
 import DAO.RemuneracionDAO;
 import VO.Remuneracion;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 /**
@@ -18,31 +19,28 @@ public class RemIFMConsultarPago extends javax.swing.JInternalFrame {
     /**
      * Creates new form RemIFMConsultarPago
      */
+    DecimalFormat formatea = new DecimalFormat("###,###.##");
+    
     public RemIFMConsultarPago() {
         initComponents();
         mostrarListaPagosOnTable();
     }
     public void mostrarListaPagosOnTable(){
         RemuneracionDAO daoPago = new RemuneracionDAO();
+        
         DefaultTableModel model = (DefaultTableModel)JTablaPagos.getModel();
-        Object[] row = new Object[20];
+        Object[] row = new Object[15];
         ArrayList<Remuneracion> listaPagos = daoPago.getListaPagos();
         for(Remuneracion pago: listaPagos){
-            /*
-            row[0]  = pago.getRut();
-            row[1]  = pago.getSueldo();
-            row[2]  = pago.getApellidoPat();
-            row[3]  = pago.getApellidoMat();
-            row[4]  = pago.getFechaNacimiento();
-            row[5]  = pago.getDireccion();
-            row[6]  = pago.getIdCiudad();
-            row[7]  = pago.getSueldoBase();
-            row[8]  = pago.getBonoColacion();
-            row[9] = pago.getBonoMovilizacion();
-            row[10] = pago.getIdAfp();
-            row[11]  = pago.getDv();
+            row[0]  = pago.getPersonaRut();
+            row[1]  = formatea.format(pago.getMontoLiquido());
+            row[2]  = formatea.format(pago.getMontoBruto());
+            row[3]  = formatea.format(pago.getSeguroCesantia());
+            row[4]  = formatea.format(pago.getDescuentoAfp());
+            row[5]  = formatea.format(pago.getDescuentoRenta());
+            row[6]  = formatea.format(pago.getComisiones());
+            row[7]  = pago.getFecha();
             model.addRow(row);
-            */
         }
     }
     /**
@@ -61,10 +59,7 @@ public class RemIFMConsultarPago extends javax.swing.JInternalFrame {
 
         JTablaPagos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "RUT", "Sueldo Líquido", "Sueldo Bruto", "Seguro Cesantía", "Descuento AFP", "Impuesto a la Renta", "Comisiones", "Fecha"
