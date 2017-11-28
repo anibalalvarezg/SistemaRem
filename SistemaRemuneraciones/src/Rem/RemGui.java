@@ -34,11 +34,10 @@ public class RemGui extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
-        jMenuItem5 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
 
@@ -70,6 +69,14 @@ public class RemGui extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem1);
 
+        jMenuItem5.setText("Consultar Datos");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem5);
+
         jMenuItem3.setText("Editar Información");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -90,18 +97,6 @@ public class RemGui extends javax.swing.JFrame {
 
         jMenu2.setText("Cargas");
         jMenuBar1.add(jMenu2);
-
-        jMenu3.setText("Afp");
-
-        jMenuItem5.setText("Agregar");
-        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem5ActionPerformed(evt);
-            }
-        });
-        jMenu3.add(jMenuItem5);
-
-        jMenuBar1.add(jMenu3);
 
         jMenu4.setText("Pagos");
 
@@ -152,19 +147,19 @@ public class RemGui extends javax.swing.JFrame {
         darDeBaja.show();
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
-    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-        // TODO add your handling code here:
-        RemIFMAgregarAfp agregarA = new RemIFMAgregarAfp();
-        this.jDesktopPane1.add(agregarA);
-        agregarA.show();
-    }//GEN-LAST:event_jMenuItem5ActionPerformed
-
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         // TODO add your handling code here:
         RemIFMPagoMultiple pagoM = new RemIFMPagoMultiple();
         this.jDesktopPane1.add(pagoM);
         pagoM.show();
     }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        // TODO add your handling code here:
+        RemIFMConsultarDatos consultaDatos = new RemIFMConsultarDatos();
+        this.jDesktopPane1.add(consultaDatos);
+        consultaDatos.show();
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -205,7 +200,6 @@ public class RemGui extends javax.swing.JFrame {
     private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;

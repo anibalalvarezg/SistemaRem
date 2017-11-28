@@ -7,6 +7,13 @@ package Rem;
 
 import DAO.PersonaDAO;
 import VO.Persona;
+
+import DAO.ciudadDAO;
+import VO.Ciudad;
+
+import DAO.AfpDAO;
+import VO.Afp;
+
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -22,6 +29,19 @@ public class RemIFMEditar extends javax.swing.JInternalFrame {
      */
     public RemIFMEditar() {
         initComponents();
+        AfpDAO afp = new AfpDAO();
+        ArrayList<Afp> listaAfp = afp.listaDeAfp();
+        
+        for(Afp a: listaAfp){
+           comboAfp.addItem(a.getNombre());
+        }
+        
+        ciudadDAO ciudad = new ciudadDAO();
+        ArrayList<Ciudad> listaCiudad = ciudad.listaCiudad();
+
+        for(Ciudad c: listaCiudad) {
+            comboCiudad.addItem(c.getNombre());
+        }
         mostrarListaPersonasInTable();
     }
 
@@ -73,8 +93,8 @@ public class RemIFMEditar extends javax.swing.JInternalFrame {
         jLabel9 = new javax.swing.JLabel();
         fieldBonoMovilizacion = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        comboAfp = new javax.swing.JComboBox<>();
+        comboCiudad = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableMostrar = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
@@ -105,9 +125,17 @@ public class RemIFMEditar extends javax.swing.JInternalFrame {
 
         jLabel10.setText("Afp");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboAfp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboAfpActionPerformed(evt);
+            }
+        });
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comboCiudad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboCiudadActionPerformed(evt);
+            }
+        });
 
         jTableMostrar.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -193,7 +221,7 @@ public class RemIFMEditar extends javax.swing.JInternalFrame {
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(comboAfp, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel1)
@@ -210,7 +238,7 @@ public class RemIFMEditar extends javax.swing.JInternalFrame {
                                     .addComponent(fieldNombre)
                                     .addComponent(fieldNacimiento, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
                                     .addComponent(fieldDireccion, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
-                                    .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(comboCiudad, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(fieldRut, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -258,7 +286,7 @@ public class RemIFMEditar extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6)
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(comboCiudad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(fieldSueldoBase, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -274,7 +302,7 @@ public class RemIFMEditar extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel10)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(comboAfp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1)
                 .addContainerGap(28, Short.MAX_VALUE))
@@ -294,11 +322,11 @@ public class RemIFMEditar extends javax.swing.JInternalFrame {
         fieldApellidoM.setText(model.getValueAt(i,4).toString());
         fieldNacimiento.setText(model.getValueAt(i,5).toString());
         fieldDireccion.setText(model.getValueAt(i,6).toString());
-        //faltaCiudad
+        comboCiudad.setSelectedIndex((int) model.getValueAt(i,7)-1);
         fieldSueldoBase.setText(model.getValueAt(i,8).toString());
         fieldBonoColacion.setText(model.getValueAt(i,9).toString());
         fieldBonoMovilizacion.setText(model.getValueAt(i,10).toString());
-        //faltaAfp
+        comboAfp.setSelectedIndex((int)model.getValueAt(i,11)-1);
     }//GEN-LAST:event_jTableMostrarMouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -326,8 +354,18 @@ public class RemIFMEditar extends javax.swing.JInternalFrame {
         daoPersona.editarPersona(editarPersona);
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void comboCiudadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboCiudadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboCiudadActionPerformed
+
+    private void comboAfpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboAfpActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboAfpActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> comboAfp;
+    private javax.swing.JComboBox<String> comboCiudad;
     private javax.swing.JTextField fieldApellidoM;
     private javax.swing.JTextField fieldApellidoP;
     private javax.swing.JTextField fieldBonoColacion;
@@ -339,8 +377,6 @@ public class RemIFMEditar extends javax.swing.JInternalFrame {
     private javax.swing.JTextField fieldRut;
     private javax.swing.JTextField fieldSueldoBase;
     private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

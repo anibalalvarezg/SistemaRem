@@ -31,7 +31,7 @@ public class RemIFMAgregar extends javax.swing.JInternalFrame {
         ArrayList<Afp> listaAfp = afp.listaDeAfp();
         
         for(Afp a: listaAfp){
-                comboAfp.addItem(a.getNombre());
+            comboAfp.addItem(a.getNombre());
         }
         
         ciudadDAO ciudad = new ciudadDAO();
