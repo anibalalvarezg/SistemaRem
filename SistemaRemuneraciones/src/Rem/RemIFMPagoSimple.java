@@ -19,6 +19,7 @@ import VO.Remuneracion;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Calendar;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -258,7 +259,7 @@ public class RemIFMPagoSimple extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(comboFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelSueldoBase)
                     .addComponent(fieldSueldoBase, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -318,8 +319,15 @@ public class RemIFMPagoSimple extends javax.swing.JInternalFrame {
         
         ArrayList<Persona> listaPersonas = p.getListaPersonas();
         Persona personaAux = listaPersonas.get(comboPersonas.getSelectedIndex());
-        
         int idMes = comboFecha.getSelectedIndex() + 1;
+        String mesAux = "";
+        if (idMes < 10){
+            mesAux = "0"+Integer.toString(idMes);
+            idMes = Integer.parseInt(mesAux);
+        } else {
+            mesAux = Integer.toString(idMes);
+        }
+        
         int comision = p.consultarComisiones(personaAux.getRut(),Integer.toString(idMes));
         
        
@@ -370,14 +378,17 @@ public class RemIFMPagoSimple extends javax.swing.JInternalFrame {
         int year = Calendar.getInstance().get(Calendar.YEAR);
         
         int dia = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
-        String fechaFinal = Integer.toString(year) + "-"+ Integer.toString(idMes)+ "-"+Integer.toString(dia);
-        
-        Remuneracion rem = new Remuneracion(fechaFinal, (int) sueldoBruto,sueldoLiquido,descuentoCesantia,descuentoAfp,descuentoRenta,comision,personaAux.getRut());
-        
+        String fechaFinal = Integer.toString(year) + "-"+ mesAux+ "-"+Integer.toString(dia);
         RemuneracionDAO r = new RemuneracionDAO();
         
-        r.registrarPago(rem);
-        
+        if(r.consultarPago(personaAux.getRut(), fechaFinal) == 0){
+            Remuneracion rem = new Remuneracion(fechaFinal, (int) sueldoBruto,sueldoLiquido,descuentoCesantia,descuentoAfp,descuentoRenta,comision,personaAux.getRut());
+            r.registrarPago(rem);
+        } else {
+            JOptionPane.showMessageDialog(null, "Ya se le pagó a la persona este mes.");
+
+        }
+       
     }//GEN-LAST:event_botonPagoActionPerformed
 
     private void fieldDescuentoAfpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldDescuentoAfpActionPerformed

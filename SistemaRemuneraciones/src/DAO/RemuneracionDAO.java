@@ -7,6 +7,7 @@ package DAO;
 
 import ConexionBd.ConexionBd;
 import VO.Remuneracion;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
@@ -23,7 +24,7 @@ public class RemuneracionDAO {
             Statement st = conex.getConnection().createStatement();
             st.executeUpdate("INSERT INTO erpremuneraciones.`REM_Remuneracion` (fecha, montoBruto, montoLiquido, seguroCesantia, descuentoAfp, descuentoRenta, PersonalRut,comisiones) VALUES ('"+rem.getFecha()+"',"+rem.getMontoBruto()+","+rem.getMontoLiquido()+","+rem.getSeguroCesantia()+","+rem.getDescuentoAfp()+","+rem.getDescuentoRenta()+","+rem.getPersonaRut()+","+rem.getComisiones()+")");
 
-            JOptionPane.showMessageDialog(null, "Se ha registrado Exitosamente","Información",JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Se ha pagado exitosamente","Información",JOptionPane.INFORMATION_MESSAGE);
             st.close();
             conex.desconectar();
 
@@ -31,5 +32,30 @@ public class RemuneracionDAO {
             System.out.println(e.getMessage());
             JOptionPane.showMessageDialog(null, "No se registró la persona");
         }
+    }
+    
+    public int consultarPago(int rut, String fecha){
+        ConexionBd conex= new ConexionBd();
+        int resultado = 0;
+        try {
+            Statement st = conex.getConnection().createStatement();
+            ResultSet rs;
+            
+            rs = st.executeQuery("SELECT * FROM REM_Remuneracion WHERE Personalrut="+rut+" AND fecha='"+fecha+"'");
+            System.out.println("SELECT * FROM REM_Remuneracion WHERE Personalrut="+rut+" AND fecha='"+fecha+"'");
+            if (!rs.next() ) {
+                resultado = 0;
+            } else {
+                resultado = 1;
+            }
+            st.close();
+            conex.desconectar();
+            return resultado;
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null, "No se encontraron pagos");
+            return 0;
+        }
+        
     }
 }
