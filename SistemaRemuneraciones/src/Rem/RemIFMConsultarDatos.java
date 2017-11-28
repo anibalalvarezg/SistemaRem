@@ -67,7 +67,15 @@ public class RemIFMConsultarDatos extends javax.swing.JInternalFrame {
             new String [] {
                 "Rut", "Nombre", "Apellido Paterno", "Apellido Materno"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(jTableMostrar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
