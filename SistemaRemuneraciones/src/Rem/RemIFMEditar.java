@@ -105,6 +105,24 @@ public class RemIFMEditar extends javax.swing.JInternalFrame {
         setClosable(true);
         setTitle("Editar Persona");
 
+        fieldNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                fieldNombreKeyTyped(evt);
+            }
+        });
+
+        fieldApellidoM.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                fieldApellidoMKeyTyped(evt);
+            }
+        });
+
+        fieldApellidoP.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                fieldApellidoPKeyTyped(evt);
+            }
+        });
+
         jLabel1.setText("Nombre");
 
         jLabel2.setText("Apellido Materno");
@@ -119,11 +137,29 @@ public class RemIFMEditar extends javax.swing.JInternalFrame {
 
         jLabel7.setText("Sueldo Base");
 
+        fieldSueldoBase.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                fieldSueldoBaseKeyTyped(evt);
+            }
+        });
+
         jLabel8.setText("Bono Colación");
+
+        fieldBonoColacion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                fieldBonoColacionKeyTyped(evt);
+            }
+        });
 
         jLabel9.setText("Bono Movilización");
 
-        jLabel10.setText("Afp");
+        fieldBonoMovilizacion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                fieldBonoMovilizacionKeyTyped(evt);
+            }
+        });
+
+        jLabel10.setText("AFP");
 
         comboAfp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -368,6 +404,66 @@ public class RemIFMEditar extends javax.swing.JInternalFrame {
     private void comboAfpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboAfpActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_comboAfpActionPerformed
+
+    private void fieldNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fieldNombreKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar(); 
+        
+        if(Character.isDigit(c)) { 
+            getToolkit().beep(); 
+            evt.consume(); 
+        } 
+    }//GEN-LAST:event_fieldNombreKeyTyped
+
+    private void fieldApellidoPKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fieldApellidoPKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar(); 
+        
+        if(Character.isDigit(c)) { 
+            getToolkit().beep(); 
+            evt.consume(); 
+        }         
+    }//GEN-LAST:event_fieldApellidoPKeyTyped
+
+    private void fieldApellidoMKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fieldApellidoMKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar(); 
+        
+        if(Character.isDigit(c)) { 
+            getToolkit().beep(); 
+            evt.consume(); 
+        }         
+    }//GEN-LAST:event_fieldApellidoMKeyTyped
+
+    private void fieldSueldoBaseKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fieldSueldoBaseKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar(); 
+        
+        if(Character.isLetter(c)) { 
+            getToolkit().beep(); 
+            evt.consume(); 
+        }        
+    }//GEN-LAST:event_fieldSueldoBaseKeyTyped
+
+    private void fieldBonoColacionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fieldBonoColacionKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar(); 
+        
+        if(Character.isLetter(c)) { 
+            getToolkit().beep(); 
+            evt.consume(); 
+        }
+    }//GEN-LAST:event_fieldBonoColacionKeyTyped
+
+    private void fieldBonoMovilizacionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fieldBonoMovilizacionKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar(); 
+        
+        if(Character.isLetter(c)) { 
+            getToolkit().beep(); 
+            evt.consume(); 
+        }
+    }//GEN-LAST:event_fieldBonoMovilizacionKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -164,10 +164,19 @@
   </Layout>
   <SubComponents>
     <Component class="javax.swing.JTextField" name="fieldNombre">
+      <Events>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="fieldNombreKeyTyped"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="fieldApellidoM">
+      <Events>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="fieldApellidoMKeyTyped"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="fieldApellidoP">
+      <Events>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="fieldApellidoPKeyTyped"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="fieldNacimiento">
     </Component>
@@ -209,6 +218,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="fieldSueldoBase">
+      <Events>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="fieldSueldoBaseKeyTyped"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel8">
       <Properties>
@@ -216,6 +228,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="fieldBonoColacion">
+      <Events>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="fieldBonoColacionKeyTyped"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel9">
       <Properties>
@@ -223,10 +238,13 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="fieldBonoMovilizacion">
+      <Events>
+        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="fieldBonoMovilizacionKeyTyped"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel10">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Afp"/>
+        <Property name="text" type="java.lang.String" value="AFP"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JComboBox" name="comboAfp">
