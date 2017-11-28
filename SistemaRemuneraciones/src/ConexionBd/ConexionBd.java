@@ -35,7 +35,25 @@ public class ConexionBd {
             System.out.println(e);
         } 
     }
-   
+    
+   public ConexionBd(String bdAux) {
+        String urlAux = "jdbc:mysql://beta.inf.ucv.cl:3306/"+bdAux;
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            connection = DriverManager.getConnection(urlAux,login,password);
+            
+            if (connection != null) {
+                System.out.println("Conexión a base de datos" + bdAux +" OK\n");
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        } catch (ClassNotFoundException e) {
+            System.out.println(e);
+        } catch (Exception e) {
+            System.out.println(e);
+        } 
+    }
+    
     public Connection getConnection() {
         return connection;
     }

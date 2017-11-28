@@ -9,11 +9,16 @@ package Rem;
 import DAO.PersonaDAO;
 import DAO.AfpDAO;
 import DAO.ciudadDAO;
+import DAO.RemuneracionDAO;
 
 import VO.Persona;
 import VO.Afp;
 import VO.Ciudad;
+import VO.Remuneracion;
+
+import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 
 /**
@@ -35,6 +40,7 @@ public class RemIFMPagoSimple extends javax.swing.JInternalFrame {
         fieldCesantia.setVisible(false);
         fieldBruto.setVisible(false);
         fieldLiquido.setVisible(false);
+        fieldComisiones.setVisible(false);
         
         sep1.setVisible(false);
         sep2.setVisible(false);
@@ -48,7 +54,7 @@ public class RemIFMPagoSimple extends javax.swing.JInternalFrame {
         labelCesantia.setVisible(false);
         labelBruto.setVisible(false);
         labelLiquido.setVisible(false);
-        
+        labelComisiones.setVisible(false);
         PersonaDAO p = new PersonaDAO();
         ArrayList<Persona> listaPersonas = p.getListaPersonas();
         
@@ -67,7 +73,8 @@ public class RemIFMPagoSimple extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jTextField1 = new javax.swing.JTextField();
+        comboFecha = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         comboPersonas = new javax.swing.JComboBox<>();
         botonPago = new javax.swing.JButton();
@@ -90,20 +97,25 @@ public class RemIFMPagoSimple extends javax.swing.JInternalFrame {
         sep3 = new javax.swing.JSeparator();
         labelLiquido = new javax.swing.JLabel();
         fieldLiquido = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        labelComisiones = new javax.swing.JLabel();
+        fieldComisiones = new javax.swing.JTextField();
+
+        jTextField1.setText("jTextField1");
 
         setClosable(true);
         setTitle("Realizar Pago");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Enero ", "Febrero", "Marzo", "Abril", "Mayo ", "Junio ", "Julio ", "Agosto ", "Septiembre ", "Octubre ", "Noviembre ", "Diciembre" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        comboFecha.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Enero ", "Febrero", "Marzo", "Abril", "Mayo ", "Junio ", "Julio ", "Agosto ", "Septiembre ", "Octubre ", "Noviembre ", "Diciembre" }));
+        comboFecha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                comboFechaActionPerformed(evt);
             }
         });
 
         jLabel1.setText("Nombre:");
 
-        botonPago.setText("Consultar");
+        botonPago.setText("Pagar");
         botonPago.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonPagoActionPerformed(evt);
@@ -167,6 +179,12 @@ public class RemIFMPagoSimple extends javax.swing.JInternalFrame {
 
         fieldLiquido.setEditable(false);
 
+        jLabel2.setText("Fecha:");
+
+        labelComisiones.setText("Comisiones:");
+
+        fieldComisiones.setEditable(false);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -174,55 +192,58 @@ public class RemIFMPagoSimple extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(sep1, javax.swing.GroupLayout.PREFERRED_SIZE, 432, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(71, 71, 71)
-                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(29, 29, 29)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jLabel1)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(comboPersonas, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(botonPago))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(labelSueldoBase)
-                                                .addComponent(labelBonoColacion)
-                                                .addComponent(labelBonoMovilizacion))
-                                            .addGap(32, 32, 32)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(fieldBonoMovilizacion, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
-                                                .addComponent(fieldBonoColacion)
-                                                .addComponent(fieldSueldoBase)))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGap(119, 119, 119)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(fieldDescuentoAfp)
-                                                .addComponent(fieldDescuentoRenta)
-                                                .addComponent(fieldCesantia, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE))))))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(labelBruto)
-                                    .addGap(54, 54, 54)
-                                    .addComponent(fieldBruto, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(sep2, javax.swing.GroupLayout.PREFERRED_SIZE, 432, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(labelCesantia)
-                                .addComponent(labelDescuentoAfp)
-                                .addComponent(labelDescuentoRenta)))
+                        .addGap(29, 29, 29)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(comboFecha, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(comboPersonas, 0, 284, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(botonPago)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(sep1, javax.swing.GroupLayout.PREFERRED_SIZE, 432, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(labelBruto)
+                                        .addGap(54, 54, 54)
+                                        .addComponent(fieldBruto, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(sep2, javax.swing.GroupLayout.PREFERRED_SIZE, 432, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(labelCesantia)
+                                            .addComponent(labelDescuentoAfp)
+                                            .addComponent(labelDescuentoRenta))
+                                        .addGap(32, 32, 32)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(fieldDescuentoAfp)
+                                            .addComponent(fieldDescuentoRenta)
+                                            .addComponent(fieldCesantia, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(labelLiquido)
+                                    .addGap(46, 46, 46)
+                                    .addComponent(fieldLiquido, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(sep3, javax.swing.GroupLayout.PREFERRED_SIZE, 432, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(labelLiquido)
-                                .addGap(46, 46, 46)
-                                .addComponent(fieldLiquido, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(sep3, javax.swing.GroupLayout.PREFERRED_SIZE, 432, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(labelSueldoBase)
+                                    .addComponent(labelBonoColacion)
+                                    .addComponent(labelBonoMovilizacion))
+                                .addGap(32, 32, 32)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(fieldBonoMovilizacion)
+                                    .addComponent(fieldBonoColacion)
+                                    .addComponent(fieldSueldoBase, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addComponent(labelComisiones)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(fieldComisiones, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -233,10 +254,16 @@ public class RemIFMPagoSimple extends javax.swing.JInternalFrame {
                     .addComponent(jLabel1)
                     .addComponent(comboPersonas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botonPago))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(comboFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelSueldoBase)
-                    .addComponent(fieldSueldoBase, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(fieldSueldoBase, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelComisiones)
+                    .addComponent(fieldComisiones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelBonoColacion)
@@ -245,7 +272,7 @@ public class RemIFMPagoSimple extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelBonoMovilizacion)
                     .addComponent(fieldBonoMovilizacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(22, 22, 22)
+                .addGap(18, 18, 18)
                 .addComponent(sep1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(1, 1, 1)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -253,7 +280,7 @@ public class RemIFMPagoSimple extends javax.swing.JInternalFrame {
                     .addComponent(fieldBruto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(sep2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelCesantia)
                     .addComponent(fieldCesantia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -265,23 +292,21 @@ public class RemIFMPagoSimple extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelDescuentoRenta)
                     .addComponent(fieldDescuentoRenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(9, 9, 9)
                 .addComponent(sep3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelLiquido)
                     .addComponent(fieldLiquido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
-                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25))
+                .addGap(74, 74, 74))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+    private void comboFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboFechaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    }//GEN-LAST:event_comboFechaActionPerformed
 
     private void botonPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonPagoActionPerformed
         // TODO add your handling code here:
@@ -294,6 +319,11 @@ public class RemIFMPagoSimple extends javax.swing.JInternalFrame {
         ArrayList<Persona> listaPersonas = p.getListaPersonas();
         Persona personaAux = listaPersonas.get(comboPersonas.getSelectedIndex());
         
+        int idMes = comboFecha.getSelectedIndex() + 1;
+        int comision = p.consultarComisiones(personaAux.getRut(),Integer.toString(idMes));
+        
+       
+        
         fieldSueldoBase.setVisible(true);
         fieldBonoColacion.setVisible(true);
         fieldBonoMovilizacion.setVisible(true);
@@ -302,6 +332,7 @@ public class RemIFMPagoSimple extends javax.swing.JInternalFrame {
         fieldCesantia.setVisible(true);
         fieldBruto.setVisible(true);
         fieldLiquido.setVisible(true);
+        fieldComisiones.setVisible(true);
         
         sep1.setVisible(true);
         sep2.setVisible(true);
@@ -315,12 +346,14 @@ public class RemIFMPagoSimple extends javax.swing.JInternalFrame {
         labelCesantia.setVisible(true);
         labelBruto.setVisible(true);
         labelLiquido.setVisible(true);
+        labelComisiones.setVisible(true);
         
         fieldSueldoBase.setText(Integer.toString(personaAux.getSueldoBase()));
         fieldBonoColacion.setText(Integer.toString(personaAux.getBonoColacion()));
         fieldBonoMovilizacion.setText(Integer.toString(personaAux.getBonoMovilizacion()));
         
-        sueldoBruto = personaAux.getSueldoBase()  + personaAux.getBonoColacion() + personaAux.getBonoMovilizacion();
+        fieldComisiones.setText(Integer.toString(comision));
+        sueldoBruto = personaAux.getSueldoBase()  + personaAux.getBonoColacion() + personaAux.getBonoMovilizacion()+ comision;
         fieldBruto.setText(Integer.toString((int) sueldoBruto));
         descuentoAfp = (sueldoBruto * (afp.consultarDescuento(personaAux.getIdAfp())/100)); 
         descuentoCesantia = (float) (sueldoBruto * 0.024);
@@ -333,9 +366,17 @@ public class RemIFMPagoSimple extends javax.swing.JInternalFrame {
         fieldCesantia.setText(Float.toString(descuentoCesantia));
         
         fieldLiquido.setText(Float.toString(sueldoLiquido));
+
+        int year = Calendar.getInstance().get(Calendar.YEAR);
         
+        int dia = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
+        String fechaFinal = Integer.toString(year) + "-"+ Integer.toString(idMes)+ "-"+Integer.toString(dia);
         
+        Remuneracion rem = new Remuneracion(fechaFinal, (int) sueldoBruto,sueldoLiquido,descuentoCesantia,descuentoAfp,descuentoRenta,comision,personaAux.getRut());
         
+        RemuneracionDAO r = new RemuneracionDAO();
+        
+        r.registrarPago(rem);
         
     }//GEN-LAST:event_botonPagoActionPerformed
 
@@ -384,21 +425,25 @@ public class RemIFMPagoSimple extends javax.swing.JInternalFrame {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonPago;
+    private javax.swing.JComboBox<String> comboFecha;
     private javax.swing.JComboBox<String> comboPersonas;
     private javax.swing.JTextField fieldBonoColacion;
     private javax.swing.JTextField fieldBonoMovilizacion;
     private javax.swing.JTextField fieldBruto;
     private javax.swing.JTextField fieldCesantia;
+    private javax.swing.JTextField fieldComisiones;
     private javax.swing.JTextField fieldDescuentoAfp;
     private javax.swing.JTextField fieldDescuentoRenta;
     private javax.swing.JTextField fieldLiquido;
     private javax.swing.JTextField fieldSueldoBase;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel labelBonoColacion;
     private javax.swing.JLabel labelBonoMovilizacion;
     private javax.swing.JLabel labelBruto;
     private javax.swing.JLabel labelCesantia;
+    private javax.swing.JLabel labelComisiones;
     private javax.swing.JLabel labelDescuentoAfp;
     private javax.swing.JLabel labelDescuentoRenta;
     private javax.swing.JLabel labelLiquido;

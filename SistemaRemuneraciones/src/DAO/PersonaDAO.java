@@ -119,5 +119,34 @@ public class PersonaDAO {
         }
     }
     
+    public int consultarComisiones(int rut, String fecha){
+        ConexionBd conex= new ConexionBd("erpproyectos");
+        try {
+            int comision = 0;
+            Statement stA = conex.getConnection().createStatement();
+            ResultSet rs;
+            
+            rs = stA.executeQuery("SELECT SUM(comision) as suma FROM Comisiones WHERE rut="+rut+" AND MONTH(fecha)='"+fecha+"'");
+            if (!rs.next() ) {
+                comision = 0;
+
+            } else {
+                if(rs.getString("suma")== null){
+                    comision = 0;
+                } else {
+                    comision = Integer.parseInt(rs.getString("suma"));
+                    
+                }
+            }
+            
+            stA.close();
+            conex.desconectar();
+            return comision;
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null, "No se encontraron personas");
+            return 0;
+        }
+    }
  
 }
