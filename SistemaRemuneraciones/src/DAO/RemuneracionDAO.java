@@ -10,6 +10,7 @@ import VO.Remuneracion;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -57,5 +58,27 @@ public class RemuneracionDAO {
             return 0;
         }
         
+    }
+    
+    public ArrayList<Remuneracion> getListaPagos(){
+        ConexionBd conex = new ConexionBd();
+        ArrayList<Remuneracion> listaPagos = new ArrayList<Remuneracion>();
+        try {
+            Statement estatuto = conex.getConnection().createStatement();
+            ResultSet rs;
+            Remuneracion pago;
+            rs = estatuto.executeQuery("SELECT * FROM REM_Remuneracion");
+            while(rs.next()){
+                pago = new Remuneracion(rs.getString("fecha"),rs.getInt("montoBruto"),rs.getInt("montoLiquido"),rs.getInt("seguroCesantia"),rs.getInt("descuentoAfp"),rs.getInt("descuentoRenta"),rs.getInt("comisiones"),rs.getInt("PersonalRut"));
+                listaPagos.add(pago);
+            }
+            estatuto.close();
+            conex.desconectar();
+
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(null, "Pago no encontrado");
+        }
+        return listaPagos;
     }
 }
