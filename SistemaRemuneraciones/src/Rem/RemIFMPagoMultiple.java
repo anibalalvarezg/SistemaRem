@@ -35,21 +35,21 @@ public class RemIFMPagoMultiple extends javax.swing.JInternalFrame {
     public void mostrarListaPersonasInTable(){
         PersonaDAO daoPersona = new PersonaDAO();
         DefaultTableModel model = (DefaultTableModel)jTableMostrar.getModel();
-        Object[] row = new Object[12];
+        String[] row = new String[12];
         ArrayList<Persona> listaPersonas = daoPersona.getListaPersonas();
         for(Persona p: listaPersonas){
-            row[0]  = p.getRut();
+            row[0]  = String.valueOf(p.getRut());
             row[1]  = p.getNombre();
             row[2]  = p.getApellidoPat();
             row[3]  = p.getApellidoMat();
             row[4]  = p.getFechaNacimiento();
             row[5]  = p.getDireccion();
-            row[6]  = p.getIdCiudad();
-            row[7]  = p.getSueldoBase();
-            row[8]  = p.getBonoColacion();
-            row[9] = p.getBonoMovilizacion();
-            row[10] = p.getIdAfp();            
-            row[11]  = p.getDv();
+            row[6]  = String.valueOf(p.getIdCiudad());
+            row[7]  = String.valueOf(p.getSueldoBase());
+            row[8]  = String.valueOf(p.getBonoColacion());
+            row[9]  = String.valueOf(p.getBonoMovilizacion());
+            row[10] = String.valueOf(p.getIdAfp());            
+            row[11] = String.valueOf(p.getDv());
             model.addRow(row);
         }
     }
@@ -270,11 +270,11 @@ public class RemIFMPagoMultiple extends javax.swing.JInternalFrame {
         int idMes = comboFecha.getSelectedIndex() + 1;
         for(int i = 0; i < modelStack.getRowCount(); i++){
             int rut = Integer.parseInt(modelStack.getValueAt(i, 0).toString());
-            System.out.println((int)modelStack.getValueAt(i, 0));
+            //System.out.println(modelStack.getValueAt(i, 0));
             int comision = p.consultarComisiones(rut,Integer.toString(idMes));
-            sueldoBruto = (int)modelStack.getValueAt(i, 7)  + (int)modelStack.getValueAt(i, 8) + (int)modelStack.getValueAt(i, 9)+ comision;
+            sueldoBruto = Integer.parseInt(modelStack.getValueAt(i, 7).toString())  + Integer.parseInt(modelStack.getValueAt(i, 8).toString()) + Integer.parseInt(modelStack.getValueAt(i, 9).toString())+ comision;
             
-            descuentoAfp = (sueldoBruto * (afp.consultarDescuento((int)modelStack.getValueAt(i, 10))/100)); 
+            descuentoAfp = (sueldoBruto * (afp.consultarDescuento(Integer.parseInt(modelStack.getValueAt(i, 10).toString()))/100)); 
             descuentoCesantia = (float) (sueldoBruto * 0.024);
             float descuentoRenta = this.impuestoRenta(sueldoBruto);
             
@@ -285,7 +285,7 @@ public class RemIFMPagoMultiple extends javax.swing.JInternalFrame {
             int dia = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
             String fechaFinal = Integer.toString(year) + "-"+ Integer.toString(idMes)+ "-"+Integer.toString(dia);
 
-            Remuneracion rem = new Remuneracion(fechaFinal, (int) sueldoBruto,sueldoLiquido,descuentoCesantia,descuentoAfp,descuentoRenta,comision,(int)modelStack.getValueAt(i, 0));
+            Remuneracion rem = new Remuneracion(fechaFinal,  (int)sueldoBruto,sueldoLiquido,descuentoCesantia,descuentoAfp,descuentoRenta,comision,Integer.parseInt(modelStack.getValueAt(i, 0).toString()));
 
             RemuneracionDAO r = new RemuneracionDAO();
 
@@ -318,7 +318,7 @@ public class RemIFMPagoMultiple extends javax.swing.JInternalFrame {
         DefaultTableModel modelStack = (DefaultTableModel)jTableStack.getModel();
         int i = jTableMostrar.getSelectedRow();
         TableModel model = jTableMostrar.getModel();
-        Object[] row = new Object[12];
+        String[] row = new String[12];
         row[0]  = model.getValueAt(i,0).toString();
         row[1]  = model.getValueAt(i,1).toString();
         row[2]  = model.getValueAt(i,2).toString();
@@ -349,7 +349,7 @@ public class RemIFMPagoMultiple extends javax.swing.JInternalFrame {
         DefaultTableModel modelMostrar = (DefaultTableModel)jTableMostrar.getModel();
         int i = jTableStack.getSelectedRow();
         TableModel model = jTableStack.getModel();
-        Object[] row = new Object[12];
+        String[] row = new String[12];
         row[0]  = model.getValueAt(i,0).toString();
         row[1]  = model.getValueAt(i,1).toString();
         row[2]  = model.getValueAt(i,2).toString();
