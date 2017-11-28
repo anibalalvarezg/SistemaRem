@@ -5,9 +5,13 @@
  */
 package Rem;
 
+import DAO.AfpDAO;
 import DAO.PersonaDAO;
+import DAO.RemuneracionDAO;
 import VO.Persona;
+import VO.Remuneracion;
 import java.util.ArrayList;
+import java.util.Calendar;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
@@ -66,9 +70,9 @@ public class RemIFMPagoMultiple extends javax.swing.JInternalFrame {
         jButtonLimpiarLista = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        fieldFechaPago = new javax.swing.JTextField();
         jButtonEliminarDeLista = new javax.swing.JButton();
         jButtonSeleccionarTodo = new javax.swing.JButton();
+        comboFecha = new javax.swing.JComboBox<>();
 
         setClosable(true);
         setTitle("Pagos Multiples");
@@ -182,12 +186,6 @@ public class RemIFMPagoMultiple extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Fecha de Pago:");
 
-        fieldFechaPago.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                fieldFechaPagoActionPerformed(evt);
-            }
-        });
-
         jButtonEliminarDeLista.setText("Eliminar de la lista");
         jButtonEliminarDeLista.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -201,6 +199,8 @@ public class RemIFMPagoMultiple extends javax.swing.JInternalFrame {
                 jButtonSeleccionarTodoActionPerformed(evt);
             }
         });
+
+        comboFecha.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -220,7 +220,7 @@ public class RemIFMPagoMultiple extends javax.swing.JInternalFrame {
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(fieldFechaPago, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(comboFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton3))))
                 .addGap(104, 104, 104))
@@ -234,7 +234,7 @@ public class RemIFMPagoMultiple extends javax.swing.JInternalFrame {
                 .addComponent(jButtonSeleccionarTodo)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButtonLimpiarLista)
                     .addComponent(jButtonEliminarDeLista))
@@ -242,7 +242,7 @@ public class RemIFMPagoMultiple extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton3)
                     .addComponent(jLabel1)
-                    .addComponent(fieldFechaPago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(comboFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -259,19 +259,60 @@ public class RemIFMPagoMultiple extends javax.swing.JInternalFrame {
     
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+        float descuentoAfp = 0;
+        float sueldoBruto  = 0;
+        float descuentoCesantia = 0;
+        AfpDAO afp      = new AfpDAO();
+        PersonaDAO p    = new PersonaDAO();
         DefaultTableModel modelStack = (DefaultTableModel)jTableStack.getModel();
-        String fechaPago   =   fieldFechaPago.getText();
-        //Object[] row = new Object[100];
+        //PersonaDAO daoPersona = new PersonaDAO();
+        
+        int idMes = comboFecha.getSelectedIndex() + 1;
         for(int i = 0; i < modelStack.getRowCount(); i++){
-            //row[0] = modelStack.getValueAt(count, 1).toString()
-            System.out.println (modelStack.getValueAt(i, 1).toString());
+            int rut = Integer.parseInt(modelStack.getValueAt(i, 0).toString());
+            System.out.println((int)modelStack.getValueAt(i, 0));
+            int comision = p.consultarComisiones(rut,Integer.toString(idMes));
+            sueldoBruto = (int)modelStack.getValueAt(i, 7)  + (int)modelStack.getValueAt(i, 8) + (int)modelStack.getValueAt(i, 9)+ comision;
+            
+            descuentoAfp = (sueldoBruto * (afp.consultarDescuento((int)modelStack.getValueAt(i, 10))/100)); 
+            descuentoCesantia = (float) (sueldoBruto * 0.024);
+            float descuentoRenta = this.impuestoRenta(sueldoBruto);
+            
+            float sueldoLiquido = sueldoBruto - descuentoCesantia - descuentoAfp - descuentoRenta;
+            
+            int year = Calendar.getInstance().get(Calendar.YEAR);
+        
+            int dia = Calendar.getInstance().get(Calendar.DAY_OF_MONTH);
+            String fechaFinal = Integer.toString(year) + "-"+ Integer.toString(idMes)+ "-"+Integer.toString(dia);
+
+            Remuneracion rem = new Remuneracion(fechaFinal, (int) sueldoBruto,sueldoLiquido,descuentoCesantia,descuentoAfp,descuentoRenta,comision,(int)modelStack.getValueAt(i, 0));
+
+            RemuneracionDAO r = new RemuneracionDAO();
+
+            r.registrarPago(rem);
         }
     }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void fieldFechaPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fieldFechaPagoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_fieldFechaPagoActionPerformed
-
+    private float impuestoRenta(float valor){
+    
+        if (valor <= 634122) {
+            return valor*0;
+        } else if(634122 < valor && valor <= 1409160){
+            return (float) (valor*0.04);
+        } else if (1409160 < valor && valor <= 2348600){
+            return (float) (valor*0.08);
+        } else if (2348600 < valor && valor <= 3288040) {
+            return (float) (valor*0.135);
+        } else if (3288040 < valor && valor <=  4227480) {
+            return (float) (valor*0.23);
+        } else if (4227480 < valor && valor <=  5636640) {
+            return (float) (valor*0.304);
+        } else if (5636640 < valor) {
+            return (float) (valor*0.35);
+        }
+        
+        return 0;
+    
+    }
     private void jTableMostrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableMostrarMouseClicked
         // TODO add your handling code here:
         DefaultTableModel modelStack = (DefaultTableModel)jTableStack.getModel();
@@ -327,7 +368,7 @@ public class RemIFMPagoMultiple extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField fieldFechaPago;
+    private javax.swing.JComboBox<String> comboFecha;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButtonEliminarDeLista;
     private javax.swing.JButton jButtonLimpiarLista;
