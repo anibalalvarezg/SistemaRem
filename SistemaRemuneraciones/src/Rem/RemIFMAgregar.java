@@ -408,6 +408,7 @@ public class RemIFMAgregar extends javax.swing.JInternalFrame {
             arr_rut[i] = rut%10;
             rut = rut/10;
         }
+        
                
         for (i = 0 ; i < String.valueOf(fieldRut.getText()).length();i++){
             if (j>7) j=2;
