@@ -8,6 +8,7 @@ package Rem;
 import DAO.RemuneracionDAO;
 import VO.Remuneracion;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 /**
@@ -19,7 +20,10 @@ public class RemIFMConsultarPago extends javax.swing.JInternalFrame {
     /**
      * Creates new form RemIFMConsultarPago
      */
-    DecimalFormat formatea = new DecimalFormat("###,###.##");
+    DecimalFormat formatea = new DecimalFormat("$   ###,###.##");
+    DecimalFormat formateaRut = new DecimalFormat("##,###,###");
+    DecimalFormat formatea2 = new DecimalFormat("$  -###,###.##");
+    SimpleDateFormat sm = new SimpleDateFormat("mm-dd-yyyy");
     
     public RemIFMConsultarPago() {
         initComponents();
@@ -32,12 +36,12 @@ public class RemIFMConsultarPago extends javax.swing.JInternalFrame {
         Object[] row = new Object[15];
         ArrayList<Remuneracion> listaPagos = daoPago.getListaPagos();
         for(Remuneracion pago: listaPagos){
-            row[0]  = pago.getPersonaRut();
+            row[0]  = formateaRut.format(pago.getPersonaRut());
             row[1]  = formatea.format(pago.getMontoLiquido());
             row[2]  = formatea.format(pago.getMontoBruto());
-            row[3]  = formatea.format(pago.getSeguroCesantia());
-            row[4]  = formatea.format(pago.getDescuentoAfp());
-            row[5]  = formatea.format(pago.getDescuentoRenta());
+            row[3]  = formatea2.format(pago.getSeguroCesantia());
+            row[4]  = formatea2.format(pago.getDescuentoAfp());
+            row[5]  = formatea2.format(pago.getDescuentoRenta());
             row[6]  = formatea.format(pago.getComisiones());
             row[7]  = pago.getFecha();
             model.addRow(row);
@@ -55,6 +59,7 @@ public class RemIFMConsultarPago extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         JTablaPagos = new javax.swing.JTable();
 
+        setClosable(true);
         setTitle("Consultar Pagos");
 
         JTablaPagos.setModel(new javax.swing.table.DefaultTableModel(
