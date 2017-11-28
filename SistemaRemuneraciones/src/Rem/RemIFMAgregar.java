@@ -94,9 +94,21 @@ public class RemIFMAgregar extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Nombre");
 
+        fieldNombre.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
+                fieldNombreInputMethodTextChanged(evt);
+            }
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
+        });
         fieldNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 fieldNombreActionPerformed(evt);
+            }
+        });
+        fieldNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                fieldNombreKeyTyped(evt);
             }
         });
 
@@ -132,11 +144,23 @@ public class RemIFMAgregar extends javax.swing.JInternalFrame {
 
         jLabel4.setText("Apellido Paterno ");
 
+        fieldApellidoP.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                fieldApellidoPKeyTyped(evt);
+            }
+        });
+
         jLabel5.setText("Apellido Materno");
 
         jLabel7.setText("Fecha Nacimiento");
 
         jLabel8.setText("Dirección");
+
+        fieldApellidoM.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                fieldApellidoMKeyTyped(evt);
+            }
+        });
 
         jLabel9.setText("Ciudad");
 
@@ -166,14 +190,29 @@ public class RemIFMAgregar extends javax.swing.JInternalFrame {
         jLabel13.setText("Bono Movilización");
 
         fieldSueldoBase.setText("0");
+        fieldSueldoBase.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                fieldSueldoBaseKeyTyped(evt);
+            }
+        });
 
         fieldColacion.setText("0");
         fieldColacion.setToolTipText("");
+        fieldColacion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                fieldColacionKeyTyped(evt);
+            }
+        });
 
         fieldMovilizacion.setText("0");
         fieldMovilizacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 fieldMovilizacionActionPerformed(evt);
+            }
+        });
+        fieldMovilizacion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                fieldMovilizacionKeyTyped(evt);
             }
         });
 
@@ -352,36 +391,33 @@ public class RemIFMAgregar extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         String hola = verificacionDV.getText();
         String chao = fieldDV.getText();
-        
+        System.out.println("mio"+hola);
+        System.out.println(chao);
         if (hola.equals(chao)==false){
             JOptionPane.showMessageDialog(null, "El RUT ingresado no es válido");
             fieldDV.setText("");
-        }else {
-   
-        int rut                 = Integer.valueOf(fieldRut.getText());
-        int dv                  = Integer.valueOf(fieldDV.getText());
-        String nombre           = fieldNombre.getText();
-        String apellidoP        = fieldApellidoP.getText();
-        String apellidoM        = fieldApellidoM.getText();
-        String fechaNacimiento  = fieldNacimiento.getText();
-        String direccion        = fieldDireccion.getText();
-        //Object idCiudad =  comboCiudad.getSelectedItem();
-        
-        int idCiudad            =  comboCiudad.getSelectedIndex()+1;
-        int sueldoBase          = Integer.valueOf(fieldSueldoBase.getText());
-        int bonoColacion        = Integer.valueOf(fieldColacion.getText());
-        int bonoMovilizacion    = Integer.valueOf(fieldMovilizacion.getText());
-        //Object idAfp = comboAfp.getSelectedItem();
-        int idAfp               = comboAfp.getSelectedIndex()+1;
-        
-        if (nombre==null || apellidoP==null || apellidoM==null || fechaNacimiento==null || direccion==null || idCiudad==0 || sueldoBase==0 || idAfp==0){
-            JOptionPane.showMessageDialog(null, "Existen campos vacíos por rellenar");
-        }
-        
-        Persona nuevaPersona = new Persona(nombre,apellidoP,apellidoM,direccion,fechaNacimiento,rut,dv,idCiudad,sueldoBase,bonoColacion,bonoMovilizacion,idAfp);
-        
-        PersonaDAO daoPersona = new PersonaDAO();
-        daoPersona.registrarPersona(nuevaPersona);
+        }else
+        {    
+            int rut                 = Integer.valueOf(fieldRut.getText());
+            int dv                  = Integer.valueOf(fieldDV.getText());
+            String nombre           = fieldNombre.getText();
+            String apellidoP        = fieldApellidoP.getText();
+            String apellidoM        = fieldApellidoM.getText();
+            String fechaNacimiento  = fieldNacimiento.getText();
+            String direccion        = fieldDireccion.getText();
+            //Object idCiudad =  comboCiudad.getSelectedItem();
+
+            int idCiudad            =  comboCiudad.getSelectedIndex()+1;
+            int sueldoBase          = Integer.valueOf(fieldSueldoBase.getText());
+            int bonoColacion        = Integer.valueOf(fieldColacion.getText());
+            int bonoMovilizacion    = Integer.valueOf(fieldMovilizacion.getText());
+            //Object idAfp = comboAfp.getSelectedItem();
+            int idAfp               = comboAfp.getSelectedIndex()+1;
+
+            Persona nuevaPersona = new Persona(nombre,apellidoP,apellidoM,direccion,fechaNacimiento,rut,dv,idCiudad,sueldoBase,bonoColacion,bonoMovilizacion,idAfp);
+
+            PersonaDAO daoPersona = new PersonaDAO();
+            daoPersona.registrarPersona(nuevaPersona);
         }    
 
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -408,8 +444,7 @@ public class RemIFMAgregar extends javax.swing.JInternalFrame {
             arr_rut[i] = rut%10;
             rut = rut/10;
         }
-        
-               
+       
         for (i = 0 ; i < String.valueOf(fieldRut.getText()).length();i++){
             if (j>7) j=2;
             sum = sum + (arr_rut[i]*j);
@@ -447,6 +482,70 @@ public class RemIFMAgregar extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
 
     }//GEN-LAST:event_fieldDVKeyPressed
+
+    private void fieldNombreInputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_fieldNombreInputMethodTextChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_fieldNombreInputMethodTextChanged
+
+    private void fieldNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fieldNombreKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar(); 
+        
+        if(Character.isDigit(c)) { 
+            getToolkit().beep(); 
+            evt.consume(); 
+        }  
+    }//GEN-LAST:event_fieldNombreKeyTyped
+
+    private void fieldApellidoPKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fieldApellidoPKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar(); 
+        
+        if(Character.isDigit(c)) { 
+            getToolkit().beep(); 
+            evt.consume(); 
+        } 
+    }//GEN-LAST:event_fieldApellidoPKeyTyped
+
+    private void fieldApellidoMKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fieldApellidoMKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar(); 
+        
+        if(Character.isDigit(c)) { 
+            getToolkit().beep(); 
+            evt.consume(); 
+        } 
+    }//GEN-LAST:event_fieldApellidoMKeyTyped
+
+    private void fieldSueldoBaseKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fieldSueldoBaseKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar(); 
+        
+        if(Character.isLetter(c)) { 
+            getToolkit().beep(); 
+            evt.consume(); 
+        } 
+    }//GEN-LAST:event_fieldSueldoBaseKeyTyped
+
+    private void fieldColacionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fieldColacionKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar(); 
+        
+        if(Character.isLetter(c)) { 
+            getToolkit().beep(); 
+            evt.consume(); 
+        } 
+    }//GEN-LAST:event_fieldColacionKeyTyped
+
+    private void fieldMovilizacionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fieldMovilizacionKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar(); 
+        
+        if(Character.isLetter(c)) { 
+            getToolkit().beep(); 
+            evt.consume(); 
+        } 
+    }//GEN-LAST:event_fieldMovilizacionKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
