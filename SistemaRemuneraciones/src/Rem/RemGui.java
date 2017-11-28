@@ -39,6 +39,7 @@ public class RemGui extends javax.swing.JFrame {
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
+        jMenuItem7 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
 
         jMenuItem2.setText("jMenuItem2");
@@ -99,6 +100,14 @@ public class RemGui extends javax.swing.JFrame {
         jMenuBar1.add(jMenu2);
 
         jMenu4.setText("Pagos");
+
+        jMenuItem7.setText("Realizar Pago");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem7);
 
         jMenuItem6.setText("Pago Multiple");
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
@@ -161,6 +170,13 @@ public class RemGui extends javax.swing.JFrame {
         consultaDatos.show();
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        // TODO add your handling code here:
+        RemIFMPagoSimple pagoSimple = new RemIFMPagoSimple();
+        this.jDesktopPane1.add(pagoSimple);
+        pagoSimple.show();
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -208,5 +224,6 @@ public class RemGui extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
     // End of variables declaration//GEN-END:variables
 }
