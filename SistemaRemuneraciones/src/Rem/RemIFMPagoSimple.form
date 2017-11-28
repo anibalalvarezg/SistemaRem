@@ -25,41 +25,75 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
-                      <Component id="jComboBox1" min="-2" pref="99" max="-2" attributes="0"/>
-                  </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="sep1" alignment="1" min="-2" pref="432" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
+                                  <Component id="jComboBox1" min="-2" pref="99" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Component id="comboPersonas" min="-2" pref="284" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="botonPago" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="labelSueldoBase" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="labelBonoColacion" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="labelBonoMovilizacion" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                              <Component id="fieldBonoMovilizacion" pref="100" max="32767" attributes="0"/>
+                                              <Component id="fieldBonoColacion" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="fieldSueldoBase" alignment="0" max="32767" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <EmptySpace min="-2" pref="119" max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                              <Component id="fieldDescuentoAfp" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="fieldDescuentoRenta" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="fieldCesantia" alignment="0" pref="102" max="32767" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                          </Group>
+                          <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Component id="labelBruto" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
+                                  <Component id="fieldBruto" min="-2" pref="100" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="sep2" min="-2" pref="432" max="-2" attributes="0"/>
+                              <Component id="labelCesantia" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="labelDescuentoAfp" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="labelDescuentoRenta" alignment="0" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Component id="comboPersonas" min="-2" pref="284" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="botonPago" min="-2" max="-2" attributes="0"/>
+                              <Component id="labelLiquido" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
+                              <Component id="fieldLiquido" min="-2" pref="100" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="labelSueldoBase" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="labelBonoColacion" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="labelBonoMovilizacion" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="labelDescuentoAfp" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="labelDescuentoRenta" alignment="0" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="fieldSueldoBase" alignment="0" pref="100" max="32767" attributes="0"/>
-                                  <Component id="fieldBonoColacion" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="fieldBonoMovilizacion" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="fieldDescuentoAfp" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="fieldDescuentoRenta" alignment="0" max="32767" attributes="0"/>
-                              </Group>
-                          </Group>
+                          <Component id="sep3" min="-2" pref="432" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -87,6 +121,20 @@
                   <Component id="labelBonoMovilizacion" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="fieldBonoMovilizacion" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
+              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+              <Component id="sep1" min="-2" pref="10" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="labelBruto" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="fieldBruto" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="sep2" min="-2" pref="10" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="labelCesantia" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="fieldCesantia" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="labelDescuentoAfp" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -97,7 +145,14 @@
                   <Component id="labelDescuentoRenta" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="fieldDescuentoRenta" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="37" max="32767" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="sep3" min="-2" pref="10" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="labelLiquido" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="fieldLiquido" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="51" max="32767" attributes="0"/>
               <Component id="jComboBox1" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
           </Group>
@@ -178,6 +233,9 @@
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="fieldSueldoBaseActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="fieldBonoColacion">
       <Properties>
@@ -209,6 +267,48 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="fieldDescuentoRentaActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="labelCesantia">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Seguro Cesant&#xed;a:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="fieldCesantia">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="fieldCesantiaActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="labelBruto">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Sueldo Bruto:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="fieldBruto">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="fieldBrutoActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JSeparator" name="sep2">
+    </Component>
+    <Component class="javax.swing.JSeparator" name="sep1">
+    </Component>
+    <Component class="javax.swing.JSeparator" name="sep3">
+    </Component>
+    <Component class="javax.swing.JLabel" name="labelLiquido">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Sueldo L&#xed;quido:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="fieldLiquido">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

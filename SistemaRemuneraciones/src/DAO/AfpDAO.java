@@ -34,8 +34,7 @@ public class AfpDAO {
             JOptionPane.showMessageDialog(null, "No se registró la Afp");
         }
      }
-    
-    
+   
     public ArrayList<Afp> listaDeAfp() {
         ArrayList<Afp> listaAfp = new ArrayList<Afp>();
         ConexionBd conex= new ConexionBd();
@@ -60,6 +59,27 @@ public class AfpDAO {
         }
             return listaAfp;
     }
+    
+    public float consultarDescuento(int codAfp){
+        float descuento = 0;
+        ConexionBd conex= new ConexionBd();
+        try {
+            PreparedStatement consulta = conex.getConnection().prepareStatement("SELECT * FROM REM_Afp WHERE codigoAfp="+Integer.toString(codAfp));
+            ResultSet res = consulta.executeQuery();
+            while(res.next()){
+                descuento = Float.parseFloat(res.getString("tasaAfp"));
+            }
+            res.close();
+            consulta.close();
+            conex.desconectar();
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "no se pudo realizar la consulta\n"+e);
+        }
+            return descuento;
+    
+    }
+    
 
 }
 
