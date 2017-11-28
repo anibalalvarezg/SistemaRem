@@ -78,11 +78,11 @@ public class RemIFMPagoMultiple extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Rut", "Nombre", "Apellido Paterno", "Apellido Materno"
+                "Rut", "Nombre", "Apellido Paterno", "Apellido Materno", "Fecha de Nacimiento", "Dirección", "Ciudad", "Sueldo Base", "Bono Colación", "Bono Movilización", "AFP", "DV"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -95,17 +95,43 @@ public class RemIFMPagoMultiple extends javax.swing.JInternalFrame {
             }
         });
         jScrollPane1.setViewportView(jTableMostrar);
+        if (jTableMostrar.getColumnModel().getColumnCount() > 0) {
+            jTableMostrar.getColumnModel().getColumn(4).setMinWidth(0);
+            jTableMostrar.getColumnModel().getColumn(4).setPreferredWidth(0);
+            jTableMostrar.getColumnModel().getColumn(4).setMaxWidth(0);
+            jTableMostrar.getColumnModel().getColumn(5).setMinWidth(0);
+            jTableMostrar.getColumnModel().getColumn(5).setPreferredWidth(0);
+            jTableMostrar.getColumnModel().getColumn(5).setMaxWidth(0);
+            jTableMostrar.getColumnModel().getColumn(6).setMinWidth(0);
+            jTableMostrar.getColumnModel().getColumn(6).setPreferredWidth(0);
+            jTableMostrar.getColumnModel().getColumn(6).setMaxWidth(0);
+            jTableMostrar.getColumnModel().getColumn(7).setMinWidth(0);
+            jTableMostrar.getColumnModel().getColumn(7).setPreferredWidth(0);
+            jTableMostrar.getColumnModel().getColumn(7).setMaxWidth(0);
+            jTableMostrar.getColumnModel().getColumn(8).setMinWidth(0);
+            jTableMostrar.getColumnModel().getColumn(8).setPreferredWidth(0);
+            jTableMostrar.getColumnModel().getColumn(8).setMaxWidth(0);
+            jTableMostrar.getColumnModel().getColumn(9).setMinWidth(0);
+            jTableMostrar.getColumnModel().getColumn(9).setPreferredWidth(0);
+            jTableMostrar.getColumnModel().getColumn(9).setMaxWidth(0);
+            jTableMostrar.getColumnModel().getColumn(10).setMinWidth(0);
+            jTableMostrar.getColumnModel().getColumn(10).setPreferredWidth(0);
+            jTableMostrar.getColumnModel().getColumn(10).setMaxWidth(0);
+            jTableMostrar.getColumnModel().getColumn(11).setMinWidth(0);
+            jTableMostrar.getColumnModel().getColumn(11).setPreferredWidth(0);
+            jTableMostrar.getColumnModel().getColumn(11).setMaxWidth(0);
+        }
 
         jTableStack.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Rut", "Nombre", "Apellido Paterno", "Apellido Materno"
+                "Rut", "Nombre", "Apellido Paterno", "Apellido Materno", "Fecha de Nacimiento", "Dirección ", "Ciudad", "Sueldo Base", "Bono Colación", "Bono Movilización", "AFP", "DV"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -113,6 +139,32 @@ public class RemIFMPagoMultiple extends javax.swing.JInternalFrame {
             }
         });
         jScrollPane2.setViewportView(jTableStack);
+        if (jTableStack.getColumnModel().getColumnCount() > 0) {
+            jTableStack.getColumnModel().getColumn(4).setMinWidth(0);
+            jTableStack.getColumnModel().getColumn(4).setPreferredWidth(0);
+            jTableStack.getColumnModel().getColumn(4).setMaxWidth(0);
+            jTableStack.getColumnModel().getColumn(5).setMinWidth(0);
+            jTableStack.getColumnModel().getColumn(5).setPreferredWidth(0);
+            jTableStack.getColumnModel().getColumn(5).setMaxWidth(0);
+            jTableStack.getColumnModel().getColumn(6).setMinWidth(0);
+            jTableStack.getColumnModel().getColumn(6).setPreferredWidth(0);
+            jTableStack.getColumnModel().getColumn(6).setMaxWidth(0);
+            jTableStack.getColumnModel().getColumn(7).setMinWidth(0);
+            jTableStack.getColumnModel().getColumn(7).setPreferredWidth(0);
+            jTableStack.getColumnModel().getColumn(7).setMaxWidth(0);
+            jTableStack.getColumnModel().getColumn(8).setMinWidth(0);
+            jTableStack.getColumnModel().getColumn(8).setPreferredWidth(0);
+            jTableStack.getColumnModel().getColumn(8).setMaxWidth(0);
+            jTableStack.getColumnModel().getColumn(9).setMinWidth(0);
+            jTableStack.getColumnModel().getColumn(9).setPreferredWidth(0);
+            jTableStack.getColumnModel().getColumn(9).setMaxWidth(0);
+            jTableStack.getColumnModel().getColumn(10).setMinWidth(0);
+            jTableStack.getColumnModel().getColumn(10).setPreferredWidth(0);
+            jTableStack.getColumnModel().getColumn(10).setMaxWidth(0);
+            jTableStack.getColumnModel().getColumn(11).setMinWidth(0);
+            jTableStack.getColumnModel().getColumn(11).setPreferredWidth(0);
+            jTableStack.getColumnModel().getColumn(11).setMaxWidth(0);
+        }
 
         jButtonLimpiarLista.setText("Limpiar lista");
         jButtonLimpiarLista.addActionListener(new java.awt.event.ActionListener() {
@@ -225,11 +277,19 @@ public class RemIFMPagoMultiple extends javax.swing.JInternalFrame {
         DefaultTableModel modelStack = (DefaultTableModel)jTableStack.getModel();
         int i = jTableMostrar.getSelectedRow();
         TableModel model = jTableMostrar.getModel();
-        Object[] row = new Object[4];
+        Object[] row = new Object[12];
         row[0]  = model.getValueAt(i,0).toString();
         row[1]  = model.getValueAt(i,1).toString();
         row[2]  = model.getValueAt(i,2).toString();
         row[3]  = model.getValueAt(i,3).toString();
+        row[4]  = model.getValueAt(i,4).toString();
+        row[5]  = model.getValueAt(i,5).toString();
+        row[6]  = model.getValueAt(i,6).toString();
+        row[7]  = model.getValueAt(i,7).toString();
+        row[8]  = model.getValueAt(i,8).toString();
+        row[9]  = model.getValueAt(i,9).toString();
+        row[10]  = model.getValueAt(i,10).toString();
+        row[11]  = model.getValueAt(i,11).toString();
         modelStack.addRow(row);
         ((DefaultTableModel)jTableMostrar.getModel()).removeRow(i);
         //modelStack.addTableModelListener(jTableMostrar.getModel());
@@ -248,11 +308,19 @@ public class RemIFMPagoMultiple extends javax.swing.JInternalFrame {
         DefaultTableModel modelMostrar = (DefaultTableModel)jTableMostrar.getModel();
         int i = jTableStack.getSelectedRow();
         TableModel model = jTableStack.getModel();
-        Object[] row = new Object[4];
+        Object[] row = new Object[12];
         row[0]  = model.getValueAt(i,0).toString();
         row[1]  = model.getValueAt(i,1).toString();
         row[2]  = model.getValueAt(i,2).toString();
         row[3]  = model.getValueAt(i,3).toString();
+        row[4]  = model.getValueAt(i,4).toString();
+        row[5]  = model.getValueAt(i,5).toString();
+        row[6]  = model.getValueAt(i,6).toString();
+        row[7]  = model.getValueAt(i,7).toString();
+        row[8]  = model.getValueAt(i,8).toString();
+        row[9]  = model.getValueAt(i,9).toString();
+        row[10]  = model.getValueAt(i,10).toString();
+        row[11]  = model.getValueAt(i,11).toString();
         modelMostrar.addRow(row);
         ((DefaultTableModel)jTableStack.getModel()).removeRow(i);
     }//GEN-LAST:event_jButtonEliminarDeListaActionPerformed
