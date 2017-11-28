@@ -5,6 +5,11 @@
  */
 package Rem;
 
+import DAO.PersonaDAO;
+import VO.Persona;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author aniba
@@ -16,8 +21,29 @@ public class RemIFMConsultarDatos extends javax.swing.JInternalFrame {
      */
     public RemIFMConsultarDatos() {
         initComponents();
+        mostrarListaPersonasInTable();
     }
-
+    public void mostrarListaPersonasInTable(){
+        PersonaDAO daoPersona = new PersonaDAO();
+        DefaultTableModel model = (DefaultTableModel)jTableMostrar.getModel();
+        Object[] row = new Object[12];
+        ArrayList<Persona> listaPersonas = daoPersona.getListaPersonas();
+        for(Persona p: listaPersonas){
+            row[0]  = p.getRut();
+            row[1]  = p.getNombre();
+            row[2]  = p.getApellidoPat();
+            row[3]  = p.getApellidoMat();
+            row[4]  = p.getFechaNacimiento();
+            row[5]  = p.getDireccion();
+            row[6]  = p.getIdCiudad();
+            row[7]  = p.getSueldoBase();
+            row[8]  = p.getBonoColacion();
+            row[9] = p.getBonoMovilizacion();
+            row[10] = p.getIdAfp();
+            row[11]  = p.getDv();
+            model.addRow(row);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -28,24 +54,21 @@ public class RemIFMConsultarDatos extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTableMostrar = new javax.swing.JTable();
 
         setClosable(true);
         setResizable(true);
         setTitle("Consultar Datos Personas");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTableMostrar.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Rut", "Nombre", "Apellido Paterno", "Apellido Materno"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTableMostrar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -70,6 +93,6 @@ public class RemIFMConsultarDatos extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTableMostrar;
     // End of variables declaration//GEN-END:variables
 }
