@@ -142,11 +142,11 @@ public class RemIFMEditar extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Rut", "Nombre", "Apellido Paterno", "Apellido Materno", "Fecha de Nacimiento", "Dirección", "Ciudad", "Sueldo Base", "Bono Colación", "Bono Movilización", "Afp"
+                "Rut", "Nombre", "Apellido Paterno", "Apellido Materno", "Fecha de Nacimiento", "Dirección", "Ciudad", "Sueldo Base", "Bono Colación", "Bono Movilización", "Afp", "blabla"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -181,6 +181,9 @@ public class RemIFMEditar extends javax.swing.JInternalFrame {
             jTableMostrar.getColumnModel().getColumn(10).setMinWidth(0);
             jTableMostrar.getColumnModel().getColumn(10).setPreferredWidth(0);
             jTableMostrar.getColumnModel().getColumn(10).setMaxWidth(0);
+            jTableMostrar.getColumnModel().getColumn(11).setMinWidth(0);
+            jTableMostrar.getColumnModel().getColumn(11).setPreferredWidth(0);
+            jTableMostrar.getColumnModel().getColumn(11).setMaxWidth(0);
         }
 
         jButton1.setText("Editar");
