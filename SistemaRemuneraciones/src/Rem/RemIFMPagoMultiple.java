@@ -191,6 +191,8 @@ public class RemIFMPagoMultiple extends javax.swing.JInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        //TableModel model = jTableMostrar.getModel();
+        jTableStack.setModel(jTableMostrar.getModel());
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -216,6 +218,8 @@ public class RemIFMPagoMultiple extends javax.swing.JInternalFrame {
         row[2]  = model.getValueAt(i,2).toString();
         row[3]  = model.getValueAt(i,3).toString();
         modelStack.addRow(row);
+        //modelStack.addTableModelListener(jTableMostrar.getModel());
+        //jTableStack.setModel(model);
     }//GEN-LAST:event_jTableMostrarMouseClicked
 
 
