@@ -5,8 +5,8 @@
  */
 package Rem;
 
-import DAO.PersonaDAO;
-import VO.Persona;
+import DAO.RemuneracionDAO;
+import VO.Remuneracion;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 /**
@@ -23,25 +23,27 @@ public class RemIFMConsultarPago extends javax.swing.JInternalFrame {
         mostrarListaPagosOnTable();
     }
     public void mostrarListaPagosOnTable(){
-        /*PersonaDAO daoPersona = new PersonaDAO();
+        RemuneracionDAO daoPago = new RemuneracionDAO();
         DefaultTableModel model = (DefaultTableModel)JTablaPagos.getModel();
-        Object[] row = new Object[12];
-        ArrayList<Persona> listaPersonas = daoPersona.getListaPersonas();
-        for(Persona p: listaPersonas){
-            row[0]  = p.getRut();
-            row[1]  = p.getNombre();
-            row[2]  = p.getApellidoPat();
-            row[3]  = p.getApellidoMat();
-            row[4]  = p.getFechaNacimiento();
-            row[5]  = p.getDireccion();
-            row[6]  = p.getIdCiudad();
-            row[7]  = p.getSueldoBase();
-            row[8]  = p.getBonoColacion();
-            row[9] = p.getBonoMovilizacion();
-            row[10] = p.getIdAfp();
-            row[11]  = p.getDv();
+        Object[] row = new Object[20];
+        ArrayList<Remuneracion> listaPagos = daoPago.getListaPagos();
+        for(Remuneracion pago: listaPagos){
+            /*
+            row[0]  = pago.getRut();
+            row[1]  = pago.getSueldo();
+            row[2]  = pago.getApellidoPat();
+            row[3]  = pago.getApellidoMat();
+            row[4]  = pago.getFechaNacimiento();
+            row[5]  = pago.getDireccion();
+            row[6]  = pago.getIdCiudad();
+            row[7]  = pago.getSueldoBase();
+            row[8]  = pago.getBonoColacion();
+            row[9] = pago.getBonoMovilizacion();
+            row[10] = pago.getIdAfp();
+            row[11]  = pago.getDv();
             model.addRow(row);
-        }*/
+            */
+        }
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -69,7 +71,7 @@ public class RemIFMConsultarPago extends javax.swing.JInternalFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
