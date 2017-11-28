@@ -23,6 +23,8 @@ public class RemIFMPagoMultiple extends javax.swing.JInternalFrame {
      */
     public RemIFMPagoMultiple() {
         initComponents();
+        jButtonSeleccionarTodo.setEnabled(false);
+        jButtonLimpiarLista.setEnabled(false);
         mostrarListaPersonasInTable();
     }
     
