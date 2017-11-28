@@ -12,40 +12,51 @@ package VO;
 public class Afp {
     private int codigoAfp;
     private String nombre; 
-    private int descuento;
+    private float tasaAfp;
+    private float tasaSis;
+
+    public Afp(int codigoAfp, String nombre, float tasaAfp, float tasaSis) {
+        this.codigoAfp = codigoAfp;
+        this.nombre = nombre;
+        this.tasaAfp = tasaAfp;
+        this.tasaSis = tasaSis;
+    }
 
     public Afp(String nombre, int descuento) {
-        this.nombre = nombre;
-        this.descuento = descuento;
-    }
-    
-    public Afp(int codAfp,String nombre, int descuento) {
-        this.nombre = nombre;
-        this.descuento = descuento;
-        this.codigoAfp = codAfp;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public int getCodigoAfp() {
         return codigoAfp;
     }
 
-    public String getNombre() {
-        return nombre;
-    }
-
-    public int getDescuento() {
-        return descuento;
-    }
-
     public void setCodigoAfp(int codigoAfp) {
         this.codigoAfp = codigoAfp;
+    }
+
+    public String getNombre() {
+        return nombre;
     }
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
-    public void setDescuento(int descuento) {
-        this.descuento = descuento;
+    public float getTasaAfp() {
+        return tasaAfp;
     }
+
+    public void setTasaAfp(float tasaAfp) {
+        this.tasaAfp = tasaAfp;
+    }
+
+    public float getTasaSis() {
+        return tasaSis;
+    }
+
+    public void setTasaSis(float tasaSis) {
+        this.tasaSis = tasaSis;
+    }
+            
+    
 }

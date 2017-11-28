@@ -45,6 +45,7 @@ public class RemGui extends javax.swing.JFrame {
         jMenuItem2.setText("jMenuItem2");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Sistema Remuneraciones");
 
         jDesktopPane1.setBackground(new java.awt.Color(51, 153, 255));
 

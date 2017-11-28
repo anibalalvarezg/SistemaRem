@@ -24,7 +24,7 @@ public class AfpDAO {
         try {
             Statement estatuto = conex.getConnection().createStatement();
             estatuto.executeUpdate("INSERT INTO REM_Afp (`nombre`, `descuento`) VALUES ('"
-                   +afp.getNombre()+"',"+afp.getDescuento()+")");
+                   +afp.getNombre()+"',"+afp.getTasaAfp()+","+afp.getTasaSis()+")");
             JOptionPane.showMessageDialog(null, "Se ha registrado Exitosamente","Información",JOptionPane.INFORMATION_MESSAGE);
             estatuto.close();
             conex.desconectar();
@@ -46,8 +46,9 @@ public class AfpDAO {
             while(res.next()){
                 int codAfp = Integer.parseInt(res.getString("codigoAfp"));
                 String nombre = res.getString("nombre");
-                int descuento = Integer.parseInt(res.getString("descuento"));
-                Afp afpAux = new Afp(codAfp,nombre,descuento);
+                float tasaAfp = Float.parseFloat(res.getString("tasaAfp"));
+                float tasaSis = Float.parseFloat(res.getString("tasaSis"));
+                Afp afpAux = new Afp(codAfp,nombre,tasaAfp,tasaSis);
                 listaAfp.add(afpAux);
             }
                    res.close();
