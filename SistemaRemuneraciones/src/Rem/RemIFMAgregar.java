@@ -6,6 +6,7 @@
 package Rem;
 
 import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.JOptionPane;
 
 import DAO.PersonaDAO;
@@ -15,6 +16,7 @@ import DAO.ciudadDAO;
 import VO.Persona;
 import VO.Afp;
 import VO.Ciudad;
+import java.text.SimpleDateFormat;
 
 /**
  *
@@ -69,7 +71,6 @@ public class RemIFMAgregar extends javax.swing.JInternalFrame {
         jLabel8 = new javax.swing.JLabel();
         fieldApellidoM = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        fieldNacimiento = new javax.swing.JTextField();
         fieldDireccion = new javax.swing.JTextField();
         fieldRut = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
@@ -84,6 +85,7 @@ public class RemIFMAgregar extends javax.swing.JInternalFrame {
         comboAfp = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         verificacionDV = new javax.swing.JTextPane();
+        fieldNacimiento2 = new org.jdesktop.swingx.JXDatePicker();
 
         jButton1.setText("jButton1");
 
@@ -95,10 +97,10 @@ public class RemIFMAgregar extends javax.swing.JInternalFrame {
         jLabel1.setText("Nombre");
 
         fieldNombre.addInputMethodListener(new java.awt.event.InputMethodListener() {
+            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
+            }
             public void inputMethodTextChanged(java.awt.event.InputMethodEvent evt) {
                 fieldNombreInputMethodTextChanged(evt);
-            }
-            public void caretPositionChanged(java.awt.event.InputMethodEvent evt) {
             }
         });
         fieldNombre.addActionListener(new java.awt.event.ActionListener() {
@@ -245,7 +247,7 @@ public class RemIFMAgregar extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(24, Short.MAX_VALUE)
+                .addContainerGap(42, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -255,22 +257,19 @@ public class RemIFMAgregar extends javax.swing.JInternalFrame {
                                     .addComponent(jLabel9)
                                     .addComponent(jLabel8))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(fieldNacimiento)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(comboCiudad, javax.swing.GroupLayout.Alignment.LEADING, 0, 274, Short.MAX_VALUE)
+                                    .addComponent(fieldDireccion, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(comboCiudad, javax.swing.GroupLayout.Alignment.LEADING, 0, 274, Short.MAX_VALUE)
-                                            .addComponent(fieldDireccion, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(14, 14, 14)
-                                                .addComponent(jButton2))
-                                            .addComponent(comboAfp, javax.swing.GroupLayout.Alignment.LEADING, 0, 274, Short.MAX_VALUE)
-                                            .addComponent(fieldMovilizacion, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(fieldColacion, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(fieldSueldoBase, javax.swing.GroupLayout.Alignment.LEADING))
-                                        .addGap(0, 0, 0)
-                                        .addComponent(jLabel6))))
-                            .addGroup(layout.createSequentialGroup()
+                                        .addGap(14, 14, 14)
+                                        .addComponent(jButton2))
+                                    .addComponent(comboAfp, javax.swing.GroupLayout.Alignment.LEADING, 0, 274, Short.MAX_VALUE)
+                                    .addComponent(fieldMovilizacion, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(fieldColacion, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(fieldSueldoBase, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addGap(0, 0, 0)
+                                .addComponent(jLabel6))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel4)
                                     .addComponent(jLabel1)
@@ -279,20 +278,22 @@ public class RemIFMAgregar extends javax.swing.JInternalFrame {
                                         .addComponent(jLabel2)
                                         .addGap(31, 31, 31)
                                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(fieldApellidoM, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(fieldNombre)
-                                    .addComponent(fieldApellidoP)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(fieldRut, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 7, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(fieldDV, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(11, 11, 11)))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(fieldNacimiento2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(fieldApellidoM, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(fieldNombre)
+                                        .addComponent(fieldApellidoP)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(fieldRut, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 7, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(fieldDV, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(11, 11, 11))))))
                         .addGap(24, 24, 24))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -329,7 +330,7 @@ public class RemIFMAgregar extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(fieldNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(fieldNacimiento2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(12, 12, 12)
@@ -359,7 +360,7 @@ public class RemIFMAgregar extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14)
                     .addComponent(comboAfp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addComponent(jButton2)
                 .addGap(24, 24, 24))
         );
@@ -391,11 +392,11 @@ public class RemIFMAgregar extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         String hola = verificacionDV.getText();
         String chao = fieldDV.getText();
-        System.out.println("mio"+hola);
-        System.out.println(chao);
+          
         if (hola.equals(chao)==false){
             JOptionPane.showMessageDialog(null, "El RUT ingresado no es válido");
             fieldDV.setText("");
+          
         }else
         {    
             int rut                 = Integer.valueOf(fieldRut.getText());
@@ -403,7 +404,8 @@ public class RemIFMAgregar extends javax.swing.JInternalFrame {
             String nombre           = fieldNombre.getText();
             String apellidoP        = fieldApellidoP.getText();
             String apellidoM        = fieldApellidoM.getText();
-            String fechaNacimiento  = fieldNacimiento.getText();
+            //String fechaNacimiento  = fieldNacimiento.getText();
+            String fechaNacimiento = new SimpleDateFormat("yyy-MM-dd").format(fieldNacimiento2.getDate());
             String direccion        = fieldDireccion.getText();
             //Object idCiudad =  comboCiudad.getSelectedItem();
 
@@ -471,11 +473,13 @@ public class RemIFMAgregar extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_verificacionDVFocusLost
 
     private void fieldDVMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fieldDVMouseExited
-        // TODO add your handling code here:
+        // TODO add your handling code here:   
+    //System.out.println("HOLA" + new SimpleDateFormat("yyyy-MM-dd").format(fieldNacimiento2.getDate()));
     }//GEN-LAST:event_fieldDVMouseExited
 
     private void fieldDVKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fieldDVKeyTyped
         // TODO add your handling code here
+        
     }//GEN-LAST:event_fieldDVKeyTyped
 
     private void fieldDVKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fieldDVKeyPressed
@@ -557,7 +561,7 @@ public class RemIFMAgregar extends javax.swing.JInternalFrame {
     private javax.swing.JTextField fieldDV;
     private javax.swing.JTextField fieldDireccion;
     private javax.swing.JTextField fieldMovilizacion;
-    private javax.swing.JTextField fieldNacimiento;
+    private org.jdesktop.swingx.JXDatePicker fieldNacimiento2;
     private javax.swing.JTextField fieldNombre;
     private javax.swing.JTextField fieldRut;
     private javax.swing.JTextField fieldSueldoBase;
@@ -581,4 +585,8 @@ public class RemIFMAgregar extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextPane verificacionDV;
     // End of variables declaration//GEN-END:variables
+
+    private boolean format(Date date) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
